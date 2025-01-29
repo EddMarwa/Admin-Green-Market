@@ -18,8 +18,6 @@ if (isset($_SESSION['Username'])) { // means if there is a session active (user 
 include 'init.php';
 // echo "<pre>MY SESSION ARRAY ELEMENTS ARE: \n", print_r($_SESSION), '(from dashboard.php)</pre>';
 
-
-
 // If the HTML Form is submitted (the <button> is clicked)    // Checking if the user is coming through an HTTP POST Request and not from copy paste of the URL (coming from the form at the end of this page)
 if ($_SERVER['REQUEST_METHOD'] == 'POST') { // if the HTML Form is submitted with a POST method/verb HTTP Request
     $username = $_POST['user'];
