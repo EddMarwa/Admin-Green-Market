@@ -8,8 +8,6 @@ include 'init.php';
 
 ?>
 
-
-
         <div class="container">
             <div class="row">
 <?php
