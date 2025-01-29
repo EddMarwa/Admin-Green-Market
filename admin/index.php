@@ -48,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // if the HTML Form is submitted wit
         $_SESSION['ID']       = $row['UserID']; // Registering the Session ID as the user's (admin's) ID in the `users` database table
 
 
+        
         // Redirect the user to eCommerce\admin\dashboard.php
         header('Location: dashboard.php'); // Redirection to dashboard.php page after logging in / login
         exit();
