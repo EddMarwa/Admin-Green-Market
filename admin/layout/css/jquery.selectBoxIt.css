@@ -191,7 +191,7 @@
 
 .selectboxit-rendering {
   display: inline-block !important;
-  *display: inline !important;
+  display: inline !important;
   zoom: 1 !important;
   visibility: visible !important;
   position: absolute !important;
