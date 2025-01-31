@@ -23,7 +23,7 @@ include 'init.php';
                         echo '<div class="date">' . $item['Add_Date'] . '</div>';
 
                         // Add to Cart button (form)
-                        echo '<form action="add_to_cart.php" method="POST">';
+                        echo '<form action="#" method="POST">';
                             echo '<input type="hidden" name="item_id" value="' . $item['Item_ID'] . '">';
                             echo '<input type="hidden" name="item_name" value="' . $item['Name'] . '">';
                             echo '<input type="hidden" name="item_price" value="' . $item['Price'] . '">';
