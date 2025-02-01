@@ -1,0 +1,41 @@
+Shades of Green:
+Primary Green (Vibrant Green)
+
+Hex: #4CAF50
+RGB: rgb(76, 175, 80)
+Dark Green (For headers and prominent sections)
+
+Hex: #388E3C
+RGB: rgb(56, 142, 60)
+Light Green (For backgrounds or softer accents)
+
+Hex: #81C784
+RGB: rgb(129, 199, 132)
+Muted Green (For secondary text or less prominent features)
+
+Hex: #A5D6A7
+RGB: rgb(165, 214, 167)
+Lime Green (For call-to-action buttons or highlights)
+
+Hex: #CDDC39
+RGB: rgb(205, 220, 57)
+Olive Green (For accents or subtle background elements)
+
+Hex: #8D6E63
+RGB: rgb(141, 110, 99)
+Pale Green (For backgrounds or borders)
+
+Hex: #D9F0D3
+RGB: rgb(217, 240, 211)
+Forest Green (For deep accents)
+
+Hex: #2C6E49
+RGB: rgb(44, 110, 73)
+Mint Green (For light accents and buttons)
+
+Hex: #B2DFDB
+RGB: rgb(178, 223, 219)
+Teal Green (For highlighting or emphasizing)
+
+Hex: #00796B
+RGB: rgb(0, 121, 107)
