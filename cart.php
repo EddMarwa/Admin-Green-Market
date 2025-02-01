@@ -1,3 +1,19 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Link to JavaScript file -->
+    <script src="js/scripts.js" defer></script>
+</head>
+<body>
+
 <?php
 session_start(); // Start the session to store cart data
 
@@ -18,3 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // Display the cart content
 displayCart();
 ?>
+
+</body>
+</html>
