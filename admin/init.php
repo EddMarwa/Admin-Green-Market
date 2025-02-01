@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 // Connection To Database
 include 'connect.php';
 
-
+  
 // Routes
 $tpl  = 'includes/templates/'; // Template Directory
 $lang = 'includes/languages/'; // Languages directory (Note: including language files MUST be at first and before including any other files)

@@ -58,6 +58,34 @@ if (isset($_SESSION['user'])) { // if there's a user stored in the Session, allo
             }
 
             // Checking if there are no errors, then proceeding to add/INSERT operation
+
+            $imageName = $_FILES['image']['name'];
+$imageTmp  = $_FILES['image']['tmp_name'];
+$imageSize = $_FILES['image']['size'];
+$imageError = $_FILES['image']['error'];
+
+$allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+$imageExtension = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
+
+if (!empty($imageName) && !in_array($imageExtension, $allowedExtensions)) {
+    $formErrors[] = 'Allowed image formats: JPG, JPEG, PNG, GIF';
+}
+
+if ($imageSize > 10485760) { // 10MB
+    $formErrors[] = 'Image size must be less than 10MB';
+}
+
+
+if (empty($formErrors)) {
+    // Generate unique image name
+    $imageNewName = uniqid('product_', true) . '.' . $imageExtension;
+    $uploadPath = 'uploads/' . $imageNewName;
+
+    // Move uploaded file to uploads folder
+    move_uploaded_file($imageTmp, $uploadPath);
+}
+
+
             if (empty($formErrors)) { // means if there are no errors, then it is OKAY
                 //Inserting User info into database
                 $stmt = $con->prepare('INSERT INTO `items` (`Name`, `Description`, `Price`, `Country_Made`, `Status`, `Add_Date`, `Cat_ID`, `Member_ID`, `tags`) VALUES (:zname, :zdesc, :zprice, :zcountry, :zstatus, now(), :zcat, :zmember, :ztags)');
@@ -92,7 +120,8 @@ if (isset($_SESSION['user'])) { // if there's a user stored in the Session, allo
                             <div class="col-md-8">
 
                                 <!-- HTML Form Client-side Validation -->
-                                <form class="form-horizontal main-form" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+                                <form class="form-horizontal main-form" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
+
                                     <!-- Start: Name field -->
                                     <div class="form-group form-group-lg">
                                         <label class="col-sm-3 control-label">Name:</label>
@@ -139,6 +168,17 @@ if (isset($_SESSION['user'])) { // if there's a user stored in the Session, allo
                                         </div>
                                     </div>
                                     <!-- End: Status field -->
+                            <!--Upload button-->
+                                <!-- Start: Image Upload field -->
+<div class="form-group form-group-lg">
+    <label class="col-sm-3 control-label">Product Image:</label>
+    <div class="col-sm-10 col-md-9">
+        <input class="form-control" type="file" name="image" accept="image/*" required>
+    </div>
+</div>
+<!-- End: Image Upload field -->
+
+
                                     <!-- Start: Categories field -->
                                     <div class="form-group form-group-lg">
                                         <label class="col-sm-3 control-label">Category:</label>
@@ -177,7 +217,8 @@ if (isset($_SESSION['user'])) { // if there's a user stored in the Session, allo
                                     <span class="price-tag">
                                         $<span class="live-price">0</span>
                                     </span><!--will be used by jQuery-->
-                                    <img class="img-responsive" src="img.jpg" alt="random image">
+                                    <img class="img-responsive" src="<?php echo isset($imageNewName) ? 'uploads/' . $imageNewName : 'img.jpg'; ?>" alt="Product Image">
+
                                     <div class="caption">
                                         <h3 class="live-title">Title</h3><!--will be used by jQuery-->
                                         <p class="live-desc">Description</p><!--will be used by jQuery-->
