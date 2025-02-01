@@ -4,8 +4,6 @@
 ini_set('display_erros', 'On');
 error_reporting(E_ALL);
 
-
-
 // Connection To Database
 include 'connect.php';
 
