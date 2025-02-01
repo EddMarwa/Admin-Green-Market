@@ -151,6 +151,11 @@ function removeItemFromCart($item_id) {
     }
 }
 
+function updateItemQuantity($item_id, $quantity) {
+    if (isset($_SESSION['cart'][$item_id])) {
+        $_SESSION['cart'][$item_id]['quantity'] = $quantity;
+    }
+}
 
 
 
