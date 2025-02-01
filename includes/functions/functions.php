@@ -99,6 +99,51 @@ function checkItem($select, $from, $value) {
 
 
 /*-- Cart Functionality */
+function addToCart($item_id, $item_name, $item_price) {
+    // Check if the cart exists in the session
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = array(); // Initialize the cart if it doesn't exist
+    }
+
+    // Check if the item is already in the cart
+    if (isset($_SESSION['cart'][$item_id])) {
+        // If the item is already in the cart, increment the quantity
+        $_SESSION['cart'][$item_id]['quantity'] += 1;
+    } else {
+        // Otherwise, add the item to the cart with a quantity of 1
+        $_SESSION['cart'][$item_id] = array(
+            'name' => $item_name,
+            'price' => $item_price,
+            'quantity' => 1
+        );
+    }
+}
+
+
+function getCartTotal() {
+    $total = 0;
+    if (isset($_SESSION['cart'])) {
+        foreach ($_SESSION['cart'] as $item) {
+            $total += $item['price'] * $item['quantity'];
+        }
+    }
+    return $total;
+}
+
+
+function displayCart() {
+    if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+        echo '<h3>Your Cart</h3>';
+        foreach ($_SESSION['cart'] as $item) {
+            echo '<p>' . $item['name'] . ' - ' . $item['quantity'] . ' x Ksh ' . $item['price'] . '</p>';
+        }
+        echo '<hr>';
+        echo 'Total: Ksh ' . getCartTotal();
+    } else {
+        echo '<p>Your cart is empty.</p>';
+    }
+}
+
 
 
 
