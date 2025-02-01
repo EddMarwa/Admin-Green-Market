@@ -1307,7 +1307,7 @@ small,
 mark,
 .mark {
   padding: .2em;
-  background-color: #fcf8e3;
+  background-color: #81C784;
 }
 .text-left {
   text-align: left;
@@ -1373,7 +1373,7 @@ a.text-danger:focus {
 }
 .bg-primary {
   color: #fff;
-  background-color: #337ab7;
+  background-color: #81C784;
 }
 a.bg-primary:hover,
 a.bg-primary:focus {
@@ -5634,7 +5634,7 @@ button.list-group-item-danger.active:focus {
 .panel > .table-bordered > tfoot > tr > td:last-child,
 .panel > .table-responsive > .table-bordered > tfoot > tr > td:last-child {
   border-right: 0;
-}
+} 
 .panel > .table-bordered > thead > tr:first-child > td,
 .panel > .table-responsive > .table-bordered > thead > tr:first-child > td,
 .panel > .table-bordered > tbody > tr:first-child > td,
