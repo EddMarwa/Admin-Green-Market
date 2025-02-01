@@ -7,10 +7,10 @@
     <title>Your Cart</title>
 
     <!-- Link to CSS file -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="upload/styles.css">
 
     <!-- Link to JavaScript file -->
-    <script src="js/scripts.js" defer></script>
+    <script src="upload/scripts.js" defer></script>
 </head>
 <body>
 
