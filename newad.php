@@ -79,7 +79,7 @@ if ($imageSize > 10485760) { // 10MB
 if (empty($formErrors)) {
     // Generate unique image name
     $imageNewName = uniqid('product_', true) . '.' . $imageExtension;
-    $uploadPath = 'uploads/' . $imageNewName;
+    $uploadPath = 'images/' . $imageNewName;
 
     // Move uploaded file to uploads folder
     move_uploaded_file($imageTmp, $uploadPath);
@@ -142,7 +142,7 @@ if (empty($formErrors)) {
                                     <div class="form-group form-group-lg">
                                         <label class="col-sm-3 control-label">Price:</label>
                                         <div class="col-sm-10 col-md-9">
-                                            <input class="form-control live" data-class=".live-price" type="text" name="price" required="required" placeholder="Price of the item">
+                                            <input class="form-control live" data-class=".live-price" type="text" name="price" required="required" placeholder="Price of the item" id="price-input">
                                         </div>
                                     </div>
                                     <!-- End: Price field -->
@@ -215,9 +215,10 @@ if (empty($formErrors)) {
                             <div class="col-md-4">
                                 <div class="thumbnail item-box live-preview">
                                     <span class="price-tag">
-                                        $<span class="live-price">0</span>
-                                    </span><!--will be used by jQuery-->
-                                    <img class="img-responsive" src="<?php echo isset($imageNewName) ? 'uploads/' . $imageNewName : 'img.jpg'; ?>" alt="Product Image">
+                                        Ksh <span class="live-price">0</span>
+                                    </span>
+                                    <!--will be used by jQuery-->
+                                    <img class="img-responsive" src="<?php echo isset($imageNewName) ? 'images/' . $imageNewName : 'img.jpg'; ?>" alt="Product Image">
 
                                     <div class="caption">
                                         <h3 class="live-title">Title</h3><!--will be used by jQuery-->

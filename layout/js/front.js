@@ -89,3 +89,8 @@ $(function () {
     });
     
 });
+document.getElementById('price-input').addEventListener('input', function() {
+    var price = this.value;
+    var priceSpan = document.querySelector('.live-price');
+    priceSpan.textContent = price;  // Update the live-price span with the current input value
+});

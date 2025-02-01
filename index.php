@@ -16,7 +16,17 @@ include 'init.php';
             echo '<div class="col-sm-6 col-md-3">';
                 echo '<div class="thumbnail item-box">';
                     echo '<span class="price-tag">Ksh ' . $item['Price'] . '</span>';
-                    echo '<img class="img-responsive" src="images/img.jpg' . $item['Image'] . '" alt="' . $item['Name'] . '">'; // Use the actual image path here
+
+                    // Construct image path (the 'Image' field should store only the filename like 'item1.jpg')
+                    $imagePath = 'images/' . $item['Image'];
+
+                    // Check if the image exists, if not, use a default placeholder image
+                    if (empty($item['Image']) || !file_exists($imagePath)) {
+                        $imagePath = 'images/img.jpg'; // Placeholder image if no image is found
+                    }
+
+                    echo '<img class="img-responsive" src="' . $imagePath . '" alt="' . $item['Name'] . '">';
+
                     echo '<div class="caption">';
                         echo '<h3><a href="items.php?itemid=' . $item['Item_ID'] . '">' . $item['Name'] . '</a></h3>';
                         echo '<p>' . $item['Description'] . '</p>';
