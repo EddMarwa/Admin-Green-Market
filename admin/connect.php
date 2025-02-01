@@ -3,7 +3,7 @@
 
 // $dsn  = 'mysql:host=localhost;dbname=shop'; // Data Source Name
 // $dsn  = 'mysql:host=localhost;port=3306;dbname=shop'; // Data Source Name    // Specifying the MySQL Port Number
-$dsn  = 'mysql:host=localhost;dbname=shop'; // Data Source Name    // Specifying the MySQL Port Number
+$dsn  = 'mysql:host=localhost;dbname=shop'; // Data Source Name
 $user = 'root';
 $pass = '';
 $options = array(
