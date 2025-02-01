@@ -145,6 +145,13 @@ function displayCart() {
 }
 
 
+function removeItemFromCart($item_id) {
+    if (isset($_SESSION['cart'][$item_id])) {
+        unset($_SESSION['cart'][$item_id]);
+    }
+}
+
+
 
 
 
