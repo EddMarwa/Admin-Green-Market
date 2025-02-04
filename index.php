@@ -32,7 +32,7 @@ include 'init.php';
                         echo '<p>' . $item['Description'] . '</p>';
                         echo '<div class="date">' . $item['Add_Date'] . '</div>';
 
-                        // Add to Cart button (form)
+                        // Add to Cart button (f
                         echo '<form action="#" method="POST">';
                             echo '<input type="hidden" name="item_id" value="' . $item['Item_ID'] . '">';
                             echo '<input type="hidden" name="item_name" value="' . $item['Name'] . '">';
