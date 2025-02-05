@@ -32,7 +32,7 @@ if (isset($_GET['item_id'])) {
 
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f9;
+            background-color: #81C784;
             color: #333;
         }
 
