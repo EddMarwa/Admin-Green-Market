@@ -16,7 +16,7 @@ Muted Green (For secondary text or less prominent features)
 Hex: #A5D6A7
 RGB: rgb(165, 214, 167)
 Lime Green (For call-to-action buttons or highlights)
-
+ 
 Hex: #CDDC39
 RGB: rgb(205, 220, 57)
 Olive Green (For accents or subtle background elements)
