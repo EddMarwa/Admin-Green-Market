@@ -230,7 +230,7 @@ th {
   }
   p,
   h2,
-  h3 {
+  h3 {  
     orphans: 3;
     widows: 3;
   }
