@@ -1377,14 +1377,14 @@ a.text-danger:focus {
 }
 a.bg-primary:hover,
 a.bg-primary:focus {
-  background-color: #286090;
+  background-color: #81C784;
 }
 .bg-success {
   background-color: #dff0d8;
 }
 a.bg-success:hover,
 a.bg-success:focus {
-  background-color: #c1e2b3;
+  background-color: #81C784;
 }
 .bg-info {
   background-color: #d9edf7;
