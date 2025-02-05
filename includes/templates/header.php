@@ -17,7 +17,7 @@
                 if (isset($_SESSION['user'])) { // If the current user is authenticated/logged-in    // Protected Routes (Protecting Routes)    // this page is already in index.php by include-ing init.php
 ?>
 
-                    <img class="my-image img-thumbnail img-circle" src="img.jpg" alt="random image">
+                    <img class="my-image img-thumbnail img-circle" src="images/img.jpg" alt="random image">
                     <div class="btn-group my-info text-right">
                         <span class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             <?php echo ucfirst($sessionUser) ?> <!-- $sessionUser variable was declared in eCommerce\init.php -->
