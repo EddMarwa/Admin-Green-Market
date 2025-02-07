@@ -14,6 +14,7 @@
 function getAllFrom($field, $table, $orderField, $where = NULL, $and = NULL, $ordering = 'DESC') {
     global $con;
 
+
     // $sql = $where == NULL ? NULL : $where; // Or $sql = $where == NULL ? '' : $where;
 
     $getAll = $con->prepare("SELECT $field FROM $table $where $and ORDER BY $orderField $ordering");
