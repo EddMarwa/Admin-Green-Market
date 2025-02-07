@@ -3,7 +3,7 @@
 $consumerKey = 'kvhNgfy78Ze7ccdCJeDA446vQdq8sa1U9ToD3eoj1VQHV9KU'; 
 $consumerSecret = 'UifCLQCB30AvDzmBUXvOdpGxc5C0GThfmOpE9NM9cldkbg663W0Y2OlvUDniNYSH'; 
 $shortcode = '174379'; 
-$passkey = 'YOUR_PASSKEY';
+$passkey = '';
 $callbackURL = 'https://yourdomain.com/mpesa_callback.php'; 
 
 // Get item details from URL parameters
