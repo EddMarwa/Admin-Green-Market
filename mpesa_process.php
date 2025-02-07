@@ -34,17 +34,17 @@ $stkURL = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
 $stkHeader = ["Content-Type:application/json", "Authorization:Bearer $accessToken"];
 
 $requestData = [
-    "BusinessShortCode" => $shortcode,
-    "Password" => $password,
-    "Timestamp" => $timestamp,
-    "TransactionType" => "CustomerPayBillOnline",
-    "Amount" => $itemPrice,
-    "PartyA" => $phoneNumber,
-    "PartyB" => $shortcode,
-    "PhoneNumber" => $phoneNumber,
-    "CallBackURL" => $callbackURL,
-    "AccountReference" => "GreenMarket",
-    "TransactionDesc" => "Payment for $itemName"
+ "BusinessShortCode": "174379",    
+   "Password": "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMTYwMjE2MTY1NjI3",    
+   "Timestamp":"20160216165627",    
+   "TransactionType": "CustomerPayBillOnline",    
+   "Amount": "1",    
+   "PartyA":"254708374149",    
+   "PartyB":"174379",    
+   "PhoneNumber":"254708374149",    
+   "CallBackURL": "https://mydomain.com/pat",    
+   "AccountReference":"Test",    
+   "TransactionDesc":"Test"
 ];
 
 $ch = curl_init($stkURL);
