@@ -11,11 +11,8 @@ if (isset($_GET['item_id'])) {
     echo "No product selected.";
     exit;
 }
-echo '<a href="mpesa_process.php?item_id=' . $item['Item_ID'] . '&item_name=' . urlencode($item['Name']) . '&item_price=' . $item['Price'] . '" class="btn btn-success">Proceed to Checkout</a>';
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
