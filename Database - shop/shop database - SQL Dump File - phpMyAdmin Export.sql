@@ -140,14 +140,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`UserID`, `Username`, `Password`, `Email`, `FullName`, `GroupID`, `TrustStatus`, `RegStatus`, `Date`, `avatar`) VALUES
-(12, 'Hind', '601f1889667efaebb33b8c12572835da3f027f78', 'hind@gmail.com', 'Hind Ahmed', 0, 0, 1, '2018-02-25', '875944_hind.jpg'),
-(14, 'Fathy', '03785d4e638cd09cea620fd0939bf06825be88df', 'fathy@fathy.com', 'Fathy Shady', 0, 0, 0, '2018-02-25', ''),
-(16, 'Ramy', '59f7c8818803a2f0d7946e160dc2a63b88c0ee28', 'ramy@ramy.com', 'Ramy Rabie', 0, 0, 1, '2018-02-25', '997912_ramy.jpg'),
-(17, 'Adel', 'e5594062f0a0a362abbb022a6fb0c36dcd9a1bd1', 'adel@yahoo.com', 'Adel Sameh', 0, 0, 0, '2018-02-25', '475952_adel.jpg'),
-(21, 'Mazen', '601f1889667efaebb33b8c12572835da3f027f78', 'mazen@mazen.com', 'Mazen Naeem', 0, 0, 1, '2018-03-02', ''),
-(22, 'Fayez', '601f1889667efaebb33b8c12572835da3f027f78', 'fayez@fayez.com', 'Fayez Fawzy', 0, 0, 0, '2018-03-13', '525975_fayez.jpg'),
-(27, 'Abu Gamal', '601f1889667efaebb33b8c12572835da3f027f78', 'abugamal@hotmail.com', 'Abu Gamal Mahmoud Shanawany', 0, 0, 1, '2018-03-31', ''),
-(29, 'Ahmed', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'ahmed@gmail.com', 'Ahmed Yahya', 1, 0, 1, '2023-05-20', NULL);
+(12, 'Marwa', '601f1889667efaebb33b8c12572835da3f027f78', 'hind@gmail.com', 'Hind Ahmed', 0, 0, 1, '2018-02-25', '875944_hind.jpg'),
+(14, 'Faith', '03785d4e638cd09cea620fd0939bf06825be88df', 'fathy@fathy.com', 'Fathy Shady', 0, 0, 0, '2018-02-25', ''),
+(16, 'Kevin', '59f7c8818803a2f0d7946e160dc2a63b88c0ee28', 'ramy@ramy.com', 'Ramy Rabie', 0, 0, 1, '2018-02-25', '997912_ramy.jpg'),
+(17, 'Mark', 'e5594062f0a0a362abbb022a6fb0c36dcd9a1bd1', 'adel@yahoo.com', 'Adel Sameh', 0, 0, 0, '2018-02-25', '475952_adel.jpg'),
+(21, 'Kinuthia', '601f1889667efaebb33b8c12572835da3f027f78', 'mazen@mazen.com', 'Mazen Naeem', 0, 0, 1, '2018-03-02', ''),
+(22, 'Dante', '601f1889667efaebb33b8c12572835da3f027f78', 'fayez@fayez.com', 'Fayez Fawzy', 0, 0, 0, '2018-03-13', '525975_fayez.jpg'),
+(27, 'Collo', '601f1889667efaebb33b8c12572835da3f027f78', 'abugamal@hotmail.com', 'Abu Gamal Mahmoud Shanawany', 0, 0, 1, '2018-03-31', ''),
+(29, 'Ed', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'ahmed@gmail.com', 'Ahmed Yahya', 1, 0, 1, '2023-05-20', NULL);
 
 --
 -- Indexes for dumped tables
