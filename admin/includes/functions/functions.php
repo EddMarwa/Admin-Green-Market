@@ -33,7 +33,7 @@ function getTitle() {
 }
 
 
-/* Redirection to HomePage function v1.0
+/* Redirection to HomePage function 
 ** when any error in the website happens: It accepts the parameters: $errorMsg (to echo the error message) and $seconds (seconds before redirecting)
 */
 /* function redirectHome($errorMsg, $seconds = 3) { // 3 seconds as a default value for $seconds if not specified
