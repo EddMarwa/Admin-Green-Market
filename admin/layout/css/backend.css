@@ -10,7 +10,7 @@ body {background-color: #a2d87d; font-size: 16px}
 .login h4 {color: #fff}
 .login input {margin-bottom: 10px}
 .login .form-control {background-color: #eaeaea}
-.login .btn {background-color: #a2d87d}
+.login .btn {background-color: #388E3C}
 /* End: Login Form */
 
 /* Start: Bootstrap edits */
@@ -31,7 +31,7 @@ body {background-color: #a2d87d; font-size: 16px}
 .home-stats .stat a {color: #fff}
 .home-stats .stat a:hover {text-decoration: none}
 .home-stats .stat span {display: block; font-size: 60px}
-.home-stats .st-members {background-color: #a2d87d}
+.home-stats .st-members {background-color: #8D6E63}   
 .home-stats .st-pending {background-color: #c0392b}
 .home-stats .st-items {background-color: #d35400}
 .home-stats .st-comments {background-color: #8e44ad}
