@@ -70,7 +70,7 @@ function redirectHome($theMsg, $url = NULL, $seconds = 3) { // 3 seconds as a de
 }
 
 
-/* Function to check item in database v1.0 (to check if the new user to be added already exists in the database)
+/* Function to check item in database (to check if the new user to be added already exists in the database)
 **Parameters are: $select (items to be selected. Ex: user, item, category), $from (the table to select from. Ex: users, items, categories), $value (the value of $select. Ex: Ahmed, box, electronics)
 */
 function checkItem($select, $from, $value) {
