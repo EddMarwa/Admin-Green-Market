@@ -32,14 +32,8 @@ include 'init.php';
                         echo '<p>' . $item['Description'] . '</p>';
                         echo '<div class="date">' . $item['Add_Date'] . '</div>';
 
-                        // Add to Cart button
-                        //echo '<form action="#" method="#">';
-                            //echo '<input type="hidden" name="item_id" value="' . $item['Item_ID'] . '">';
-                            //echo '<input type="hidden" name="item_name" value="' . $item['Name'] . '">';
-                           //// echo '<input type="hidden" name="item_price" value="' . $item['Price'] . '">';
-                            //echo '<button type="submit" class="btn btn-success add-to-cart">Proceed to Checkout</button>';
-                        //echo '</form>';
-                            echo '<a href="checkout.php?item_id=' . $item['Item_ID'] . '&item_name=' . urlencode($item['Name']) . '&item_price=' . $item['Price'] . '" class="btn btn-success">Proceed to Checkout</a>';
+                       
+                         echo '<a href="checkout.php?item_id=' . $item['Item_ID'] . '&item_name=' . urlencode($item['Name']) . '&item_price=' . $item['Price'] . '" class="btn btn-success">Proceed to Checkout</a>';
 
                         
                     echo '</div>';
