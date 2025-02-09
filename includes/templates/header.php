@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="<?php echo $css; ?>jquery-ui.min.css">      <!-- $css variable is declared in eCommerce\init.php -->
         <link rel="stylesheet" href="<?php echo $css; ?>jquery.selectBoxIt.css"> <!-- $css variable is declared in eCommerce\init.php -->
         <link rel="stylesheet" href="<?php echo $css; ?>front.css">              <!-- $css variable is declared in eCommerce\init.php -->
+        <link rel="stylesheet" href="layout/css/front.css?v=<?php echo time(); ?>">
+
     </head>
     <body>
 

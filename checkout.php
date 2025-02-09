@@ -129,7 +129,7 @@ if (isset($_GET['item_id'])) {
         
     </div>
 
-    <form action="process_payment.php" method="https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest">
+    <form action="index.php" method="POST">
         <div class="form-group">
             <label for="phone">Enter M-Pesa Phone Number:</label>
             <input type="text" name="phone" required placeholder="07XXXXXXXX" pattern="[0-9]{10}">
