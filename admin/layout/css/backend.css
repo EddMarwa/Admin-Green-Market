@@ -1,10 +1,10 @@
 /* Start: Main Rulez */
-body {background-color: #428416; font-size: 16px}
+body {background-color: #81C784; font-size: 16px}
 .asterisk {font-size: 30px; color: #d20707; position: absolute; right: 30px; top: 8px} /* class asterisk was created using jQuery. The first positioned-parent is .form-control */
 .nice-message {padding: 10px; background-color: #fff; margin: 10px 0; border-left: 5px solid #080}
 /* End: Main Rulez */
 
-
+  
 /* Start: Login Form */
 .login {width: 300px; margin: 100px auto}
 .login h4 {color: #fff}
