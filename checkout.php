@@ -32,7 +32,8 @@ if (isset($_GET['item_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your main CSS file -->
+    <link rel="stylesheet" href="layout/css/front.css">
+
 
 </head>
 <body>
