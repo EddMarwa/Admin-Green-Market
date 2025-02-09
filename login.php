@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // There are TWO possibilities: Comi
             <!--Input divs are used for jQuery astrisk CSS-->
             <div class="input-container"><input class="form-control" type="text"     name="username" autocomplete="off"          placeholder="Type Your Username"      required></div>
             <div class="input-container"><input class="form-control" type="password" name="password" autocomplete="new-password" placeholder="Type A Complex Password" required></div>
-            <input class="btn btn-primary btn-block" type="submit" name="login" value="Login"> <!--We gave the button <input> itself an HTML name attribute    name="login"    to distinguish it from other HTML forms buttons to be used up there in this file to decide whether the user is comming from a Login or a Signup HTML Form using the $_POST superglobal -->
+            <input class="btn btn-success btn-block" type="submit" name="login" value="Login"> <!--We gave the button <input> itself an HTML name attribute    name="login"    to distinguish it from other HTML forms buttons to be used up there in this file to decide whether the user is comming from a Login or a Signup HTML Form using the $_POST superglobal -->
         </form>
         <!--End: Login Form-->
 

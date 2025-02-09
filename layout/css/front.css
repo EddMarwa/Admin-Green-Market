@@ -1,5 +1,5 @@
 /*Start: Main Rulez*/
-body {background-color: #50e057; font-size: 16px}
+body {background-color: #386438; font-size: 16px}
 .asterisk {font-size: 20px; color: #d20707; position: absolute; right: 10px; top: 7px}/*class asterisk was created using jQuery. The first positioned-parent is .form-control*/
 .main-form .asterisk {font-size: 30px; color: #d20707; position: absolute; right: 30px; top: 8px}
 .nice-message {padding: 10px; background-color: #fff; margin: 10px 0; border-left: 5px solid #080}
@@ -19,8 +19,8 @@ h1 {font-size: 55px; margin: 40px 0; font-weight: bold; color: #666}
 .form-control {position: relative}/*to enable me to position the asterisk I made using jQuery in the Form Validation section*/
 /*End: Bootstrap edits*/
 
-/*Start: Header Page*/ 
-.upper-bar {padding: 10px; background-color: #fff}
+/*Start: Header Page*/  
+.upper-bar {padding: 10px; background-color: #92ca92}
 .my-image {width: 32px; height: 32px}
 /*End: Header Page*/
 
