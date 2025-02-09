@@ -33,11 +33,13 @@ include 'init.php';
                         echo '<div class="date">' . $item['Add_Date'] . '</div>';
 
                        
-                         echo '<a href="checkout.php?item_id=' . $item['Item_ID'] . '&item_name=' . urlencode($item['Name']) . '&item_price=' . $item['Price'] . '" class="btn btn-success">Proceed to Checkout</a>';
+                        echo '<a href="checkout.php?item_id=' . $item['Item_ID'] . '&item_name=' . urlencode($item['Name']) . '&item_price=' . $item['Price'] . '" class="btn btn-success">Proceed to Checkout</a>';
 
+                        echo '<a href="lease.php?item_id=' . $item['Item_ID'] . '&item_name=' . urlencode($item['Name']) . '&item_price=' . $item['Price'] . '" class="btn btn-primary">Lease Item</a>';
+                        
                         
                     echo '</div>';
-                echo '</div>';
+                echo '</div>'; 
             echo '</div>';
         }
         ?>
