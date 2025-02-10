@@ -94,3 +94,38 @@ document.getElementById('price-input').addEventListener('input', function() {
     var priceSpan = document.querySelector('.live-price');
     priceSpan.textContent = price;  // Update the live-price span with the current input value
 });
+
+
+
+// lease  code for lease.php
+document.addEventListener("DOMContentLoaded", function () {
+    let leaseMonths = document.getElementById('lease_months');
+    let leaseDays = document.getElementById('lease_days');
+    let securityDepositField = document.getElementById('security_deposit');
+    let totalCostField = document.getElementById('total_cost');
+    let itemPrice = parseFloat(document.getElementById('item_price').value);
+
+    if (leaseMonths && leaseDays) {
+        leaseMonths.addEventListener('input', updateLeaseCost);
+        leaseDays.addEventListener('input', updateLeaseCost);
+    }
+
+    function updateLeaseCost() {
+        let months = parseInt(leaseMonths.value) || 0;
+        let days = parseInt(leaseDays.value) || 0;
+        let dailyCost = itemPrice / 30;
+
+        // Dynamic Security Deposit (50% of Item Price)
+        let securityDeposit = itemPrice * 0.5;
+        securityDepositField.value = securityDeposit.toFixed(2); 
+
+        let totalCost = (months * itemPrice) + (days * dailyCost) + securityDeposit;
+        totalCostField.textContent = "KES " + totalCost.toFixed(2);
+    }
+
+    // Set minimum lease start date to today
+    document.getElementById('start_date').min = new Date().toISOString().split('T')[0];
+
+    // Initialize cost calculation
+    updateLeaseCost();
+});

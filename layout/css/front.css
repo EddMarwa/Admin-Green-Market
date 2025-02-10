@@ -168,22 +168,22 @@ input[type="text"]:focus {
 
 
 
-/*Start: Lease Page*/
+/* Lease Page Styling */
 
 .lease-container {
-    max-width: 900px;
+    max-width: 850px;
     margin: 50px auto;
     background: #fff;
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.15);
+    text-align: center;
 }
 
 .lease-container h2 {
-    text-align: center;
-    font-size: 2rem;
+    font-size: 2.2rem;
+    color: #2c3e50;
     margin-bottom: 20px;
-    color: #333;
 }
 
 /* Product Summary */
@@ -192,10 +192,13 @@ input[type="text"]:focus {
     margin-bottom: 20px;
 }
 
-.lease-summary h3 {
-    font-size: 1.8rem;
-    color: #333;
-    margin-bottom: 10px;
+.lease-summary img {
+    max-width: 300px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: 0 auto;
 }
 
 .lease-summary p {
@@ -203,52 +206,64 @@ input[type="text"]:focus {
     color: #555;
 }
 
-.lease-summary img {
-    max-width: 100%;
-    height: auto;
-    margin-top: 15px;
-    border-radius: 5px;
-}
-
-/* Lease Form Styling */
+/* Lease Form */
 .lease-form {
     margin-top: 20px;
 }
 
 .lease-form .form-group {
-    margin: 20px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin: 15px 0;
+    text-align: left;
 }
 
 .lease-form label {
     font-size: 1.1rem;
     margin-bottom: 10px;
+    color: #333;
+    font-weight: 500;
+    display: block;
 }
 
-.lease-form input[type="text"], 
-.lease-form input[type="number"], 
+/* Lease Options */
+.lease-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.lease-options input {
+    width: 80px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* Input Fields */
+.lease-form input[type="text"],
+.lease-form input[type="number"],
 .lease-form select {
     padding: 12px;
     width: 100%;
-    max-width: 350px;
+    max-width: 400px;
     border-radius: 5px;
     border: 1px solid #ddd;
     font-size: 1rem;
-    margin-bottom: 20px;
     outline: none;
 }
 
-.lease-form input:focus, 
+.lease-form input:focus,
 .lease-form select:focus {
     border-color: #28a745;
 }
 
 /* Lease Submit Button */
 .lease-btn {
-    padding: 12px 30px;
-    background-color: #007bff;
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
     color: white;
     border: none;
     border-radius: 5px;
@@ -258,7 +273,15 @@ input[type="text"]:focus {
 }
 
 .lease-btn:hover {
-    background-color: #0056b3;
+    background-color: #218838;
+}
+
+/* Cost Display */
+.total-cost {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #0ea327;
+    margin-top: 10px;
 }
 
 /* Footer */
@@ -269,4 +292,4 @@ input[type="text"]:focus {
     margin-top: 30px;
 }
 
-/*End: Lease Page*/
+/* Lease Page Styling  End*/
