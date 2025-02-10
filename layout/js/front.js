@@ -98,34 +98,57 @@ document.getElementById('price-input').addEventListener('input', function() {
 
 
 // lease  code for lease.php
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     let leaseMonths = document.getElementById('lease_months');
     let leaseDays = document.getElementById('lease_days');
-    let securityDepositField = document.getElementById('security_deposit');
-    let totalCostField = document.getElementById('total_cost');
-    let itemPrice = parseFloat(document.getElementById('item_price').value);
+    let totalCostDisplay = document.getElementById('total_cost');
+    let securityDepositInput = document.getElementById('security_deposit');
+    let productPriceElement = document.getElementById('hidden_price');
 
-    if (leaseMonths && leaseDays) {
-        leaseMonths.addEventListener('input', updateLeaseCost);
-        leaseDays.addEventListener('input', updateLeaseCost);
+    // Ensure product price element exists
+    if (!productPriceElement) {
+        console.error("Product price element not found!");
+        return;
     }
 
-    function updateLeaseCost() {
+    let productPrice = parseFloat(productPriceElement.value);
+    if (isNaN(productPrice)) {
+        console.error("Invalid product price!");
+        return;
+    }
+
+    function updateCosts() {
         let months = parseInt(leaseMonths.value) || 0;
         let days = parseInt(leaseDays.value) || 0;
-        let dailyCost = itemPrice / 30;
+        let pricePerDay = productPrice / 30;
 
-        // Dynamic Security Deposit (50% of Item Price)
-        let securityDeposit = itemPrice * 0.5;
-        securityDepositField.value = securityDeposit.toFixed(2); 
+        let totalCost = (months * productPrice) + (days * pricePerDay);
+        let securityDeposit = productPrice * 0.5;
 
-        let totalCost = (months * itemPrice) + (days * dailyCost) + securityDeposit;
-        totalCostField.textContent = "KES " + totalCost.toFixed(2);
+        // Ensure values don't go negative
+        totalCost = Math.max(0, totalCost);
+        securityDeposit = Math.max(0, securityDeposit);
+
+        // Debugging: Check calculations
+        console.log("Months:", months, "Days:", days);
+        console.log("Calculated Total Cost:", totalCost);
+        console.log("Security Deposit:", securityDeposit);
+
+        // Update total cost with smooth transition
+        totalCostDisplay.style.opacity = "0";
+        setTimeout(() => {
+            totalCostDisplay.textContent = "KES " + totalCost.toFixed(2);
+            totalCostDisplay.style.opacity = "1";
+        }, 200);
+
+        // Update security deposit dynamically
+        securityDepositInput.value = securityDeposit.toFixed(2);
     }
 
-    // Set minimum lease start date to today
-    document.getElementById('start_date').min = new Date().toISOString().split('T')[0];
+    // Bind input listeners
+    leaseMonths.addEventListener('input', updateCosts);
+    leaseDays.addEventListener('input', updateCosts);
 
-    // Initialize cost calculation
-    updateLeaseCost();
+    // Initialize the cost update on page load
+    updateCosts();
 });

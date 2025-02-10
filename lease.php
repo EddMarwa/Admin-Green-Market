@@ -45,7 +45,10 @@ $securityDeposit = $product['Price'] * 0.5;
     
     <div class="lease-summary">
         <img src="<?= $imagePath ?>" alt="<?= htmlspecialchars($product['Name']) ?>">
-        <p>Price: <strong>KES <?= number_format($product['Price'], 2) ?></strong> per month</p>
+        <p>Price: <strong>KES <span id="item_price" data-price="<?= $product['Price'] ?>"><?= number_format($product['Price'], 2) ?></span></strong> per month</p>
+<input type="hidden" id="hidden_price" value="<?= $product['Price'] ?>">
+
+
     </div>
 
     <form action="process_lease.php" method="POST">
@@ -91,7 +94,41 @@ $securityDeposit = $product['Price'] * 0.5;
     </form>
 </div>
 
-<script src="layout/js/front.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let leaseMonths = document.getElementById('lease_months');
+        let leaseDays = document.getElementById('lease_days');
+        let totalCostDisplay = document.getElementById('total_cost');
+        let securityDepositInput = document.getElementById('security_deposit');
+
+        let productPrice = <?= $product['Price'] ?>; // Directly fetch product price from PHP
+        let pricePerDay = productPrice / 30; // Calculate daily price
+
+        function updateCosts() {
+            let months = parseInt(leaseMonths.value) || 0;
+            let days = parseInt(leaseDays.value) || 0;
+
+            let totalCost = (months * productPrice) + (days * pricePerDay);
+            let securityDeposit = productPrice * 0.5; // 50% of product price
+
+            // Ensure values don't go negative
+            totalCost = Math.max(0, totalCost);
+            securityDeposit = Math.max(0, securityDeposit);
+
+            // Update displayed values
+            totalCostDisplay.textContent = "KES " + totalCost.toFixed(2);
+            securityDepositInput.value = securityDeposit.toFixed(2);
+        }
+
+        // Trigger updates when user inputs values
+        leaseMonths.addEventListener('input', updateCosts);
+        leaseDays.addEventListener('input', updateCosts);
+
+        // Initialize cost on page load
+        updateCosts();
+    });
+</script>
+
 
 </body>
 </html>
