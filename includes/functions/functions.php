@@ -216,7 +216,6 @@ function redirectHome($theMsg, $url = NULL, $seconds = 3) { // 3 seconds as a de
     exit();
 }
 
-
 /* Count number of items in a table function v1.0
 ** A function to count number of items (rows) (Function that calculates number of rows in any table(Ex: to get the total number of users in the table))
 *** Parameters are: $item is items to be counted, $table is the table where you select from
