@@ -252,7 +252,7 @@ input[type="text"]:focus {
 
 .lease-form input:focus,
 .lease-form select:focus {
-    border-color: #007bff;
+    border-color: #00ff6a;
     outline: none;
     box-shadow: 0px 2px 8px rgba(0, 123, 255, 0.2);
     transform: scale(1.02);
