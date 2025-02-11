@@ -129,6 +129,5 @@ $securityDeposit = $product['Price'] * 0.5;
     });
 </script>
 
-
 </body>
 </html>
