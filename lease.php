@@ -105,20 +105,22 @@ $securityDeposit = $product['Price'] * 0.5;
         let pricePerDay = productPrice / 30; // Calculate daily price
 
         function updateCosts() {
-            let months = parseInt(leaseMonths.value) || 0;
-            let days = parseInt(leaseDays.value) || 0;
+    let months = parseInt(leaseMonths.value) || 0;
+    let days = parseInt(leaseDays.value) || 0;
 
-            let totalCost = (months * productPrice) + (days * pricePerDay);
-            let securityDeposit = productPrice * 0.5; // 50% of product price
+    // Prevent lease duration from being zero
+    if (months === 0 && days === 0) {
+        leaseDays.value = 1; // Default to 1 day
+        days = 1;
+    }
 
-            // Ensure values don't go negative
-            totalCost = Math.max(0, totalCost);
-            securityDeposit = Math.max(0, securityDeposit);
+    let totalCost = (months * productPrice) + (days * pricePerDay);
+    let securityDeposit = totalCost * 0.5; // Dynamic deposit
 
-            // Update displayed values
-            totalCostDisplay.textContent = "KES " + totalCost.toFixed(2);
-            securityDepositInput.value = securityDeposit.toFixed(2);
-        }
+    totalCostDisplay.textContent = "KES " + totalCost.toFixed(2);
+    securityDepositInput.value = securityDeposit.toFixed(2);
+}
+
 
         // Trigger updates when user inputs values
         leaseMonths.addEventListener('input', updateCosts);
