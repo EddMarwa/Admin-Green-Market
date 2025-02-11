@@ -58,8 +58,8 @@ $securityDeposit = $product['Price'] * 0.5;
         <div class="form-group">
             <label>Lease Duration:</label>
             <div class="lease-options">
-                <input type="number" id="lease_months" name="lease_months" min="0" max="24" placeholder="Months">
-                <input type="number" id="lease_days" name="lease_days" min="0" max="30" placeholder="Days">
+                <input type="number" id="lease_months" name="lease_months" min="0" max="24" placeholder="Months" value="0">
+                <input type="number" id="lease_days" name="lease_days" min="0" max="30" placeholder="Days" value="0">
             </div>
         </div>
 
