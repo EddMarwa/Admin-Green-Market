@@ -6,11 +6,11 @@ include 'config.php'; // Ensure database connection is included
 
 // Check if user is logged in
 
-if (!isset($_SESSION['user_id'])) {
-    die("You must be logged in to lease a product.");
+if (!isset($_SESSION['uid'])) {
+    die("Error: You must be logged in to lease a product.");
 }
 
-$user_id = $_SESSION['user_id']; // Get logged-in user ID
+$user_id = $_SESSION['uid']; // Use the correct session key
 
 // Get form data
 $item_id = $_POST['item_id'] ?? null;
