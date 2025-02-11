@@ -3,11 +3,12 @@ session_start();
 include 'config.php'; // Ensure database connection is included
 
 // Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
+/*
+if (!isset($_SESSION['UserId'])) {
     die("You must be logged in to lease a product.");
 }
-
-$user_id = $_SESSION['user_id']; // Get logged-in user ID
+*/
+//$UserId = $_SESSION['UserId']; // Get logged-in user ID
 
 // Get form data
 $item_id = $_POST['item_id'] ?? null;
