@@ -16,6 +16,7 @@ if (isset($_GET['item_id'])) {
     if ($isLease) {
         $dailyRate = 0.0333 * $item_price;
         $weeklyRate = 0.1 * $item_price;
+        //$leasePrice = ($leaseDuration / 7) * $weeklyRate;
         $leasePrice = $leaseDuration * $dailyRate;
     } else {
         $leasePrice = $item_price; // Standard price for purchase
