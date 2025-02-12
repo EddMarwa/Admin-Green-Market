@@ -48,7 +48,7 @@ $end_date->modify("+{$lease_days} days");
 $lease_end_date = $end_date->format('Y-m-d'); // Format for MySQL
 
 // Insert lease record into the database
-$stmt = $conn->prepare("INSERT INTO leases (User_ID, Item_ID, Start_Date, End_Date, Total_Cost, Security_Deposit, Payment_Method, Status) 
+$stmt = $conn->prepare("INSERT INTO leases (User_ID, Item_ID, start_date, End_Date, Total_Cost, security_deposit, payment_method, Status) 
                         VALUES (?, ?, ?, ?, ?, ?, ?, 'Pending')");
 $stmt->bind_param("iissdds", $user_id, $item_id, $start_date, $lease_end_date, $total_cost, $security_deposit, $payment_method);
 

@@ -76,55 +76,5 @@ $status = $lease['status'] ?? 'Pending';
 
 </div>
 
-<style>
-/* Green Market Themed Lease Confirmation Page */
-.confirmation-container {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
-    background: #f4f4f4;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.lease-summary {
-    margin-top: 20px;
-    background: #fff;
-    padding: 15px;
-    border-radius: 8px;
-}
-
-.lease-summary img {
-    max-width: 150px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-p {
-    font-size: 16px;
-    color: #333;
-    margin: 5px 0;
-}
-
-.lease-status {
-    font-weight: bold;
-    color: #27ae60;
-}
-
-.btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: #27ae60;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.btn:hover {
-    background: #218c53;
-}
-</style>
-
 </body>
 </html>
