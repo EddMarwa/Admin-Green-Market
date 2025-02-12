@@ -75,7 +75,9 @@ $status = $lease['status'] ?? 'Pending';
         <p><strong>Status:</strong> <span class="lease-status"><?= htmlspecialchars($status) ?></span></p>
     </div>
 
-    <a href="checkout.php" class="btn">Proceed To Pay</a>
+
+    <a href="checkout.php?item_id=<?= $item_id ?>&item_name=<?= urlencode($item_name) ?>&item_price=<?= $totalCost ?>&lease=yes&lease_duration=<?= $leaseDuration ?>" class="btn">Proceed To Pay</a>
+
 </div>
 
 <style>

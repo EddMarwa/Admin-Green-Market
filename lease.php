@@ -65,12 +65,15 @@ $securityDeposit = $product['Price'] * 0.5;
 
         <div class="form-group">
             <label for="start_date">Lease Start Date:</label>
-            <input type="date" name="start_date" id="start_date" required>
+            <input type="date" name="start_date" id="start_date" required min="<?= date('Y-m-d') ?>">
+
         </div>
 
         <div class="form-group">
             <label for="security_deposit">Security Deposit (Refundable):</label>
-            <input type="number" name="security_deposit" id="security_deposit" value="<?= $securityDeposit ?>" readonly>
+           
+            <input type="number" name="security_deposit" id="security_deposit" value="<?= number_format($securityDeposit, 2) ?>" readonly>
+
         </div>
 
         <div class="form-group">
@@ -96,39 +99,42 @@ $securityDeposit = $product['Price'] * 0.5;
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        let leaseMonths = document.getElementById('lease_months');
-        let leaseDays = document.getElementById('lease_days');
-        let totalCostDisplay = document.getElementById('total_cost');
-        let securityDepositInput = document.getElementById('security_deposit');
+    let leaseMonths = document.getElementById('lease_months');
+    let leaseDays = document.getElementById('lease_days');
+    let totalCostDisplay = document.getElementById('total_cost');
+    let securityDepositInput = document.getElementById('security_deposit');
 
-        let productPrice = <?= $product['Price'] ?>; // Directly fetch product price from PHP
-        let pricePerDay = productPrice / 30; // Calculate daily price
+    let productPrice = parseFloat(document.getElementById('hidden_price').value); 
+    let pricePerDay = productPrice / 30; // Calculate daily price
+    let defaultDeposit = productPrice * 0.5; // Fixed 50% of item price
 
-        function updateCosts() {
-    let months = parseInt(leaseMonths.value) || 0;
-    let days = parseInt(leaseDays.value) || 0;
+    // Set default security deposit on load
+    securityDepositInput.value = defaultDeposit.toFixed(2);
 
-    // Prevent lease duration from being zero
-    if (months === 0 && days === 0) {
-        leaseDays.value = 1; // Default to 1 day
-        days = 1;
+    function updateCosts() {
+        let months = parseInt(leaseMonths.value) || 0;
+        let days = parseInt(leaseDays.value) || 0;
+
+        // Prevent zero lease duration
+        if (months === 0 && days === 0) {
+            leaseDays.value = 1;
+            days = 1;
+        }
+
+        let totalCost = (months * productPrice) + (days * pricePerDay);
+
+        // Update displayed total cost
+        totalCostDisplay.textContent = "KES " + totalCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
     }
 
-    let totalCost = (months * productPrice) + (days * pricePerDay);
-    let securityDeposit = totalCost * 0.5; // Dynamic deposit
+    // Trigger updates when user inputs values
+    leaseMonths.addEventListener('input', updateCosts);
+    leaseDays.addEventListener('input', updateCosts);
 
-    totalCostDisplay.textContent = "KES " + totalCost.toFixed(2);
-    securityDepositInput.value = securityDeposit.toFixed(2);
-}
+    // Initialize cost on page load
+    updateCosts();
+});
 
-
-        // Trigger updates when user inputs values
-        leaseMonths.addEventListener('input', updateCosts);
-        leaseDays.addEventListener('input', updateCosts);
-
-        // Initialize cost on page load
-        updateCosts();
-    });
 </script>
 </body>
 </html>
