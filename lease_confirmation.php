@@ -35,12 +35,12 @@ if (!file_exists($imagePath) || empty($lease['Image'])) {
     $imagePath = 'images/img.jpg';
 }
 
-// Extract lease details
+// Extract lease details with fallback values
 $item_id = $lease['Item_ID'] ?? null;
 $item_name = $lease['Item_Name'] ?? 'N/A';
-$item_price = $lease['Price'] ?? 0; // Get item price from `items` table
-$leaseMonths = $lease['Lease_Months'] ?? 0;
-$leaseDays = $lease['Lease_Days'] ?? 0;
+$item_price = isset($lease['Price']) ? floatval($lease['Price']) : 0; // Ensure it's a float
+$leaseMonths = isset($lease['Lease_Months']) ? intval($lease['Lease_Months']) : 0;
+$leaseDays = isset($lease['Lease_Days']) ? intval($lease['Lease_Days']) : 0;
 $startDate = $lease['start_date'] ?? 'N/A';
 $endDate = $lease['End_Date'] ?? 'N/A';
 $paymentMethod = $lease['payment_method'] ?? 'N/A';
@@ -48,6 +48,11 @@ $status = $lease['status'] ?? 'Pending';
 
 // Convert months to days (assuming 30 days per month)
 $totalLeaseDays = ($leaseMonths * 30) + $leaseDays;
+
+// Ensure totalLeaseDays is valid
+if ($totalLeaseDays <= 0) {
+    $totalLeaseDays = 1; // Default to 1 day to prevent division errors
+}
 
 // Lease Price Calculation (Daily Rate: 3.33% of item price)
 $dailyRate = 0.0333 * $item_price;
@@ -58,7 +63,6 @@ $securityDeposit = 0.5 * $item_price;
 
 // Total Cost (Lease Cost + Security Deposit)
 $totalCost = $leaseCost + $securityDeposit;
-
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +79,7 @@ $totalCost = $leaseCost + $securityDeposit;
     <h2>Lease Confirmation</h2>
     
     <div class="lease-summary">
-        <img src="<?= $imagePath ?>" alt="<?= htmlspecialchars($item_name) ?>">
+        <img src="<?= htmlspecialchars($imagePath) ?>" alt="<?= htmlspecialchars($item_name) ?>">
         <p><strong>Item:</strong> <?= htmlspecialchars($item_name) ?></p>
         <p><strong>Start Date:</strong> <?= htmlspecialchars($startDate) ?></p>
         <p><strong>End Date:</strong> <?= htmlspecialchars($endDate) ?></p>
@@ -88,111 +92,111 @@ $totalCost = $leaseCost + $securityDeposit;
     </div>
 
     <a href="checkout.php?item_id=<?= urlencode($item_id) ?>&item_name=<?= urlencode($item_name) ?>&item_price=<?= urlencode($item_price) ?>&lease=yes&lease_duration=<?= urlencode($totalLeaseDays) ?>" class="btn">Proceed To Pay</a>
-
 </div>
+
 <style>
     /* General Page Styles */
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
 
-/* Main Container */
-.confirmation-container {
-    background: #ffffff;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-}
+    /* Main Container */
+    .confirmation-container {
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 500px;
+        text-align: center;
+    }
 
-/* Heading */
-.confirmation-container h2 {
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 15px;
-}
+    /* Heading */
+    .confirmation-container h2 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
 
-/* Lease Summary Section */
-.lease-summary {
-    text-align: left;
-    margin-bottom: 20px;
-}
+    /* Lease Summary Section */
+    .lease-summary {
+        text-align: left;
+        margin-bottom: 20px;
+    }
 
-/* Lease Item Image */
-.lease-summary img {
-    width: 100%;
-    max-height: 250px;
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
+    /* Lease Item Image */
+    .lease-summary img {
+        width: 100%;
+        max-height: 250px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
 
-/* Lease Details */
-.lease-summary p {
-    font-size: 16px;
-    color: #555;
-    margin: 8px 0;
-}
+    /* Lease Details */
+    .lease-summary p {
+        font-size: 16px;
+        color: #555;
+        margin: 8px 0;
+    }
 
-/* Highlighted Cost Details */
-.lease-summary p strong {
-    color: #222;
-}
+    /* Highlighted Cost Details */
+    .lease-summary p strong {
+        color: #222;
+    }
 
-/* Lease Status */
-.lease-status {
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 14px;
-}
+    /* Lease Status */
+    .lease-status {
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 14px;
+    }
 
-/* Pending Status */
-.lease-status {
-    background-color: #ffcc00;
-    color: #333;
-}
+    /* Pending Status */
+    .lease-status {
+        background-color: #ffcc00;
+        color: #333;
+    }
 
-/* Paid Status */
-.lease-status.paid {
-    background-color: #28a745;
-    color: white;
-}
+    /* Paid Status */
+    .lease-status.paid {
+        background-color: #28a745;
+        color: white;
+    }
 
-/* Unpaid Status */
-.lease-status.unpaid {
-    background-color: #dc3545;
-    color: white;
-}
+    /* Unpaid Status */
+    .lease-status.unpaid {
+        background-color: #dc3545;
+        color: white;
+    }
 
-/* Proceed to Pay Button */
-.btn {
-    display: block;
-    width: 100%;
-    background-color: #28a745;
-    color: white;
-    padding: 12px;
-    text-align: center;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-    transition: background 0.3s ease-in-out;
-}
+    /* Proceed to Pay Button */
+    .btn {
+        display: block;
+        width: 100%;
+        background-color: #28a745;
+        color: white;
+        padding: 12px;
+        text-align: center;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        transition: background 0.3s ease-in-out;
+    }
 
-.btn:hover {
-    background-color: #218838;
-}
-
+    .btn:hover {
+        background-color: #218838;
+    }
 </style>
+
 </body>
 </html>

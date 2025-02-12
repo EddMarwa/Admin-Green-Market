@@ -20,13 +20,11 @@ if ($result->num_rows > 0) {
 }
 $query->close();
 
-// Check if image exists, else use default placeholder
 $imagePath = 'images/' . ($product['Image'] ?: 'img.jpg');
 if (!file_exists($imagePath) || empty($product['Image'])) {
-    $imagePath = 'images/img.jpg'; // Fallback image
+    $imagePath = 'images/img.jpg';
 }
 
-// Calculate initial security deposit (50% of price)
 $securityDeposit = $product['Price'] * 0.5;
 ?>
 
@@ -37,6 +35,28 @@ $securityDeposit = $product['Price'] * 0.5;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lease <?= htmlspecialchars($product['Name']) ?></title>
     <link rel="stylesheet" href="layout/css/front.css">
+    <style>
+        .lease-options {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .lease-options div {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .lease-options label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .lease-options input {
+            width: 100%;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
@@ -45,35 +65,36 @@ $securityDeposit = $product['Price'] * 0.5;
     
     <div class="lease-summary">
         <img src="<?= $imagePath ?>" alt="<?= htmlspecialchars($product['Name']) ?>">
-        <p>Price: <strong>KES <span id="item_price" data-price="<?= $product['Price'] ?>"><?= number_format($product['Price'], 2) ?></span></strong> per month</p>
-<input type="hidden" id="hidden_price" value="<?= $product['Price'] ?>">
-
-
+        <p>Price: <strong>KES <span id="item_price" data-price="<?= $product['Price'] ?>">
+            <?= number_format($product['Price'], 2) ?></span></strong> per month</p>
     </div>
 
     <form action="process_lease.php" method="POST">
         <input type="hidden" name="item_id" value="<?= $item_id ?>">
-        <input type="hidden" id="item_price" value="<?= $product['Price'] ?>">
+        <input type="hidden" id="hidden_price" value="<?= $product['Price'] ?>">
 
         <div class="form-group">
             <label>Lease Duration:</label>
             <div class="lease-options">
-                <input type="number" id="lease_months" name="lease_months" min="0" max="24" placeholder="Months" value="0">
-                <input type="number" id="lease_days" name="lease_days" min="0" max="30" placeholder="Days" value="0">
+                <div>
+                    <label>Months</label>
+                    <input type="number" id="lease_months" name="lease_months" min="0" max="24" value="0">
+                </div>
+                <div>
+                    <label>Days</label>
+                    <input type="number" id="lease_days" name="lease_days" min="0" max="30" value="0">
+                </div>
             </div>
         </div>
 
         <div class="form-group">
             <label for="start_date">Lease Start Date:</label>
             <input type="date" name="start_date" id="start_date" required min="<?= date('Y-m-d') ?>">
-
         </div>
 
         <div class="form-group">
             <label for="security_deposit">Security Deposit (Refundable):</label>
-           
             <input type="number" name="security_deposit" id="security_deposit" value="<?= number_format($securityDeposit, 2) ?>" readonly>
-
         </div>
 
         <div class="form-group">
@@ -99,42 +120,38 @@ $securityDeposit = $product['Price'] * 0.5;
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-    let leaseMonths = document.getElementById('lease_months');
-    let leaseDays = document.getElementById('lease_days');
-    let totalCostDisplay = document.getElementById('total_cost');
-    let securityDepositInput = document.getElementById('security_deposit');
+        let leaseMonths = document.getElementById('lease_months');
+        let leaseDays = document.getElementById('lease_days');
+        let totalCostDisplay = document.getElementById('total_cost');
+        let securityDepositInput = document.getElementById('security_deposit');
 
-    let productPrice = parseFloat(document.getElementById('hidden_price').value); 
-    let pricePerDay = productPrice / 30; // Calculate daily price
-    let defaultDeposit = productPrice * 0.5; // Fixed 50% of item price
+        let productPrice = parseFloat(document.getElementById('hidden_price').value);
+        let pricePerDay = productPrice / 30;
+        let defaultDeposit = productPrice * 0.5;
 
-    // Set default security deposit on load
-    securityDepositInput.value = defaultDeposit.toFixed(2);
+        securityDepositInput.value = defaultDeposit.toFixed(2);
 
-    function updateCosts() {
-        let months = parseInt(leaseMonths.value) || 0;
-        let days = parseInt(leaseDays.value) || 0;
+        function updateCosts() {
+            let months = parseInt(leaseMonths.value) || 0;
+            let days = parseInt(leaseDays.value) || 0;
 
-        // Prevent zero lease duration
-        if (months === 0 && days === 0) {
-            leaseDays.value = 1;
-            days = 1;
+            if (months < 0) leaseMonths.value = 0;
+            if (days < 0) leaseDays.value = 0;
+
+            if (months === 0 && days === 0) {
+                leaseDays.value = 1;
+                days = 1;
+            }
+
+            let totalCost = (months * productPrice) + (days * pricePerDay);
+            totalCostDisplay.textContent = "KES " + totalCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
         }
 
-        let totalCost = (months * productPrice) + (days * pricePerDay);
+        leaseMonths.addEventListener('input', updateCosts);
+        leaseDays.addEventListener('input', updateCosts);
 
-        // Update displayed total cost
-        totalCostDisplay.textContent = "KES " + totalCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-    }
-
-    // Trigger updates when user inputs values
-    leaseMonths.addEventListener('input', updateCosts);
-    leaseDays.addEventListener('input', updateCosts);
-
-    // Initialize cost on page load
-    updateCosts();
-});
-
+        updateCosts();
+    });
 </script>
 </body>
 </html>
