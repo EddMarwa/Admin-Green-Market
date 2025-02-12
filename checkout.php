@@ -50,7 +50,9 @@ if (isset($_GET['item_id'])) {
                 <br>Lease Duration: <?= htmlspecialchars($leaseDuration) ?> days
             <?php endif; ?>
         </p>
-        <img src="images/<?= $item_id ?>.jpg" alt="Product Image">
+        <!---- <img src="images/ <?/*= $item_id */?> .jpg" alt="Product Image"> --->
+        <img src="images/<?= htmlspecialchars($item_name) ?>.jpg" alt="Product Image">
+
     </div>
 
     <form action="process_checkout.php" method="POST">
