@@ -2,7 +2,7 @@
 session_start();
 include 'config.php'; // Ensure this file exists
 
-// Check if item_id is provided in the URL
+/// Check if item_id is provided in the URL
 if (isset($_GET['item_id'])) {
     $item_id = $_GET['item_id'];
     $item_name = $_GET['item_name'];
@@ -10,13 +10,11 @@ if (isset($_GET['item_id'])) {
 
     // Check if this is a lease transaction
     $isLease = isset($_GET['lease']) && $_GET['lease'] == 'yes';
-    $leaseDuration = $isLease ? $_GET['lease_duration'] : null;
+    $leaseDuration = $isLease ? round($_GET['lease_duration'] / (60 * 60 * 24)) : null; // Convert seconds to days
 
-    // Calculate lease price if leasing (Example: 10% of price per week)
+    // Calculate lease price
     if ($isLease) {
-        $dailyRate = 0.0333 * $item_price;
-        $weeklyRate = 0.1 * $item_price;
-        //$leasePrice = ($leaseDuration / 7) * $weeklyRate;
+        $dailyRate = 0.0333 * $item_price;  // 3.33% of price per day
         $leasePrice = $leaseDuration * $dailyRate;
     } else {
         $leasePrice = $item_price; // Standard price for purchase
@@ -25,6 +23,7 @@ if (isset($_GET['item_id'])) {
     echo "No product selected.";
     exit;
 }
+
 ?>
 
 <!DOCTYPE html>
