@@ -84,14 +84,14 @@ $totalCost = $leaseCost + $securityDeposit;
         <p><strong>Start Date:</strong> <?= htmlspecialchars($startDate) ?></p>
         <p><strong>End Date:</strong> <?= htmlspecialchars($endDate) ?></p>
         <p><strong>Lease Duration:</strong> <?= $leaseMonths ?> months, <?= $leaseDays ?> days (<?= $totalLeaseDays ?> days)</p>
-        <p><strong>Estimated Lease Cost:</strong> KES <?= number_format($leaseCost, 2) ?></p>
+        <p><strong>Estimated Lease Cost:</strong> KES <?= number_format($leaseCost) ?></p>
         <p><strong>Security Deposit:</strong> KES <?= number_format($securityDeposit, 2) ?> (Refundable)</p>
         <p><strong>Total Cost:</strong> KES <?= number_format($totalCost, 2) ?></p>
         <p><strong>Payment Method:</strong> <?= ucfirst($paymentMethod) ?></p>
         <p><strong>Status:</strong> <span class="lease-status"><?= htmlspecialchars($status) ?></span></p>
     </div>
 
-    <a href="checkout.php?item_id=<?= urlencode($item_id) ?>&item_name=<?= urlencode($item_name) ?>&item_price=<?= urlencode($item_price) ?>&lease=yes&lease_duration=<?= urlencode($totalLeaseDays) ?>" class="btn">Proceed To Pay</a>
+    <a href="process_checkout.php?item_id=<?= urlencode($item_id) ?>&item_name=<?= urlencode($item_name) ?>&item_price=<?= urlencode($item_price) ?>&lease=yes&lease_duration=<?= urlencode($totalLeaseDays) ?>" class="btn">Proceed To Pay</a>
 </div>
 
 <style>
