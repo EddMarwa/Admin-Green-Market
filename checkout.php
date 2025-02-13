@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 include 'config.php'; // Ensure this file exists
 
@@ -39,6 +39,41 @@ if ($isLease) {
     <title>Checkout</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="layout/css/front.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .checkout-container {
+            width: 50%;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        .product-summary img {
+            width: 100px;
+            height: auto;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: green;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
@@ -63,7 +98,6 @@ if ($isLease) {
             <input type="text" name="phone" required placeholder="07XXXXXXXX" pattern="[0-9]{10}">
         </div>
 
-        <!-- Hidden Inputs for Processing -->
         <input type="hidden" name="item_id" value="<?= htmlspecialchars($item_id) ?>">
         <input type="hidden" name="item_name" value="<?= htmlspecialchars($item_name) ?>">
         <input type="hidden" name="item_price" value="<?= htmlspecialchars($leasePrice) ?>">
@@ -72,13 +106,9 @@ if ($isLease) {
         <input type="hidden" name="security_deposit" value="<?= htmlspecialchars($securityDeposit) ?>">
 
         <div class="form-group">
-            <button type="submit" class="btn">Confirm & Pay</button>
+            <button type="submit">Confirm & Pay</button>
         </div>
     </form>
-</div>
-
-<div class="footer">
-    <p>Powered by Green Market &copy; 2025</p>
 </div>
 
 </body>
