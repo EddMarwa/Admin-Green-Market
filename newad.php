@@ -102,7 +102,7 @@ if (empty($formErrors)) {
                     'ztags'    => $tags
                 ));
 
-                // Echoing a Success Message
+                // Echoing a Success Message!
                 if ($stmt) {
                     $succesMsg = 'Item Added';
                 }
