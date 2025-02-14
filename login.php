@@ -139,8 +139,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // There are TWO possibilities: Comi
         </form>
         <!--End: Login Form-->
 
-
-
         <!--Start: Signup Form-->
         <form class="signup" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST"> <!-- class="signup" will be used by jQuery to show the relevant HTML Form (to switch between the Login / SignUp HTML Forms). Check layout/js/front.js -->
             <!--Input divs are used for jQuery astrisk CSS-->
