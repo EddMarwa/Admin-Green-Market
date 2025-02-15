@@ -88,7 +88,7 @@ if (empty($formErrors)) {
 
             if (empty($formErrors)) { // means if there are no errors, then it is OKAY
                 //Inserting User info into database
-                $stmt = $con->prepare('INSERT INTO `items` (`Name`, `Description`, `Price`, `Country_Made`, `Status`, `Add_Date`, `Cat_ID`, `Member_ID`, `tags`) VALUES (:zname, :zdesc, :zprice, :zcountry, :zstatus, now(), :zcat, :zmember, :ztags)');
+                $stmt = $con->prepare('INSERT INTO `items` (`Name`, `Description`, `Price`, `Country_Made`, `Status`, `Add_Date`, `Cat_ID`, `Member_ID`, `tags`, `Image`) VALUES (:zname, :zdesc, :zprice, :zcountry, :zstatus, now(), :zcat, :zmember, :ztags, :zimage)');
                 //echo '<pre>', print_r($stmt), '</pre><br>';
 
                 $stmt->execute(array(
@@ -100,6 +100,7 @@ if (empty($formErrors)) {
                     'zcat'     => $category,
                     'zmember'  => $_SESSION['uid'],
                     'ztags'    => $tags
+                    'zimage'   => $imageNewName // Store image filename in the database
                 ));
 
                 // Echoing a Success Message!
