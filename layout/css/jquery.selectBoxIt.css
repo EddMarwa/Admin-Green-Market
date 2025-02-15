@@ -14,7 +14,7 @@
   vertical-align: top;
 }
 
-/* Styles that apply to all SelectBoxIt elements */
+/* Styles that apply to all SelectBox elements */
 .selectboxit-container * {
   font: 14px Helvetica, Arial;
   /* Prevents text selection */
