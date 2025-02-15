@@ -88,20 +88,21 @@ if (empty($formErrors)) {
 
             if (empty($formErrors)) { // means if there are no errors, then it is OKAY
                 //Inserting User info into database
-                $stmt = $con->prepare('INSERT INTO `items` (`Name`, `Description`, `Price`, `Country_Made`, `Status`, `Add_Date`, `Cat_ID`, `Member_ID`, `tags`, `Image`) VALUES (:zname, :zdesc, :zprice, :zcountry, :zstatus, now(), :zcat, :zmember, :ztags, :zimage)');
-                //echo '<pre>', print_r($stmt), '</pre><br>';
+                $stmt = $con->prepare("INSERT INTO `items` (`Name`, `Description`, `Price`, `Country_Made`, `Status`, `Add_Date`, `Cat_ID`, `Member_ID`, `tags`, `Image`) 
+                VALUES (:zname, :zdesc, :zprice, :zcountry, :zstatus, NOW(), :zcat, :zmember, :ztags, :zimage)");
 
                 $stmt->execute(array(
-                    'zname'    => $name,
-                    'zdesc'    => $desc,
-                    'zprice'   => $price,
-                    'zcountry' => $country,
-                    'zstatus'  => $status,
-                    'zcat'     => $category,
-                    'zmember'  => $_SESSION['uid'],
-                    'ztags'    => $tags
-                    'zimage'   => $imageNewName // Store image filename in the database
+                    ':zname'    => $name,
+                    ':zdesc'    => $desc,
+                    ':zprice'   => $price,
+                    ':zcountry' => $country,
+                    ':zstatus'  => $status,
+                    ':zcat'     => $category,
+                    ':zmember'  => $_SESSION['uid'],
+                    ':ztags'    => $tags,
+                    ':zimage'   => isset($imageNewName) ? $imageNewName : NULL  // Ensure `NULL` if no image
                 ));
+
 
                 // Echoing a Success Message!
                 if ($stmt) {
