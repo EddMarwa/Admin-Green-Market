@@ -21,6 +21,7 @@ include 'init.php';
                     $imagePath = 'images/' . $item['Image'];
 
                     // Check if the image exists, if not, use a default placeholder image
+                    
                     if (empty($item['Image']) || !file_exists($imagePath)) {
                        $imagePath = 'images/img.jpg'; // Placeholder image if no image is found
                     }
@@ -44,7 +45,6 @@ include 'init.php';
         ?>
     </div>
 </div>
-
 <?php
 // Footer
 include $tpl . 'footer.php'; 
