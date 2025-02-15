@@ -2,6 +2,12 @@
 session_start();
 include 'config.php';    
 
+// Ensure user is logged in
+if (!isset($_SESSION['uid'])) {
+    die("Error: You must be logged in to view this page.");
+}
+$user_id = $_SESSION['uid'];
+
 // Validate and fetch required parameters
 $item_id = $_GET['item_id'] ?? null;
 $item_name = $_GET['item_name'] ?? null;
