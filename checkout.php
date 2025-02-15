@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include 'config.php'; 
+include 'config.php';    
 
 // Validate and fetch required parameters
 $item_id = $_GET['item_id'] ?? null;
