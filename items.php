@@ -51,6 +51,7 @@ if ($count > 0) {
                         foreach ($allTags as $tag) {
                             $tag = str_replace(' ', '', $tag); // to be properly printed in href
                             // echo '<pre>', var_dump($tag), '</pre>';
+                            // Debugging code
                             // exit;
 
                             $lowertag = strtolower($tag); // to be properly printed in href
