@@ -34,7 +34,6 @@ if ($isLease) {
     $leasePrice = $item_price; // Standard purchase price
     $securityDeposit = 0; // No deposit for purchases
 }
-
 ?>
 
 <!DOCTYPE html>
