@@ -5,7 +5,6 @@ $pageTitle = 'HomePage'; // Check eCommerce/includes/templates/header.php file A
 
 include 'init.php';
 ?>
-
 <div class="container">
     <div class="row">
         <?php

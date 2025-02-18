@@ -59,6 +59,7 @@ curl_close($ch);
 
 $responseData = json_decode($response);
 
+
 if (isset($responseData->ResponseCode) && $responseData->ResponseCode == "0") {
     echo "STK Push sent successfully. Check your phone to complete the payment.";
 } else {

@@ -113,7 +113,7 @@ if ($isLease) {
         <div class="form-group">
             <button type="submit">Confirm & Pay</button>
         </div>
-    </form>
+    </form>  
 </div>
 
 </body>
