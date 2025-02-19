@@ -1,6 +1,8 @@
 <?php
 session_start();
 include 'config.php';
+$shortCode = '174379'; // Replace with actual shortcode
+
 
 if (!isset($_SESSION['uid'])) {
     die("Error: You must be logged in to make a payment.");
@@ -20,11 +22,11 @@ if (!preg_match('/^2547\d{8}$/', $phone)) {
 }
 
 // M-Pesa API credentials
-$consumerKey = 'YOUR_CONSUMER_KEY';
-$consumerSecret = 'YOUR_CONSUMER_SECRET';
-$shortCode = 'YOUR_SHORTCODE';
-$passkey = 'YOUR_PASSKEY';
-$callbackUrl = 'https://yourwebsite.com/stk_callback.php';
+$consumerKey = 'kvhNgfy78Ze7ccdCJeDA446vQdq8sa1U9ToD3eoj1VQHV9KU';
+$consumerSecret = "UifCLQCB30AvDzmBUXvOdpGxc5C0GThfmOpE9NM9cldkbg663W0Y2OlvUDniNYSH";  // Replace with actual Consumer Secret
+$shortcode = "174379"; // Test Paybill Number
+$passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"; // Replace with actual Passkey
+$callbackUrl = 'https://81b8-105-163-157-45.ngrok-free.app/stk_callback.php';
 $timestamp = date('YmdHis');
 $password = base64_encode($shortCode . $passkey . $timestamp);
 
