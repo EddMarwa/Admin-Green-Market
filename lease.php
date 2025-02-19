@@ -159,5 +159,5 @@ $securityDeposit = $product['Price'] * 0.5;
         updateCosts();
     });
 </script>
-</body>
+</body>  
 </html>
