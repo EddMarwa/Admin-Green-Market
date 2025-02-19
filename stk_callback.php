@@ -18,4 +18,16 @@ if ($resultCode == 0) {
 } else {
     file_put_contents($logFile, "Payment failed.\n", FILE_APPEND);
 }
+
+if ($response['Body']['stkCallback']['ResultCode'] == 0) {
+    // Debugging
+    error_log("Payment successful. Redirecting to receipt... Lease ID: " . $lease_id);
+
+    header("Location: receipt.php?lease_id=" . $lease_id);
+    exit();
+} else {
+    error_log("STK Push failed. ResultCode: " . $response['Body']['stkCallback']['ResultCode']);
+    die("Payment failed. Please try again.");
+}
+
 ?>
