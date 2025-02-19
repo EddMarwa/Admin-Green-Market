@@ -8,33 +8,18 @@ if (!isset($_SESSION['uid'])) {
 
 $lease_id = $_GET['lease_id'] ?? null;
 $amount = $_GET['amount'] ?? null;
-$phone = $_POST['phone'] ?? null; // Get phone input from form
+$phone = $_GET['phone'] ?? '';
 
 if (!$lease_id || !$amount || !is_numeric($amount)) {
     die("Invalid payment request.");
 }
 
-// Fetch user phone number from database if available
-$query = $conn->prepare("SELECT phone FROM users WHERE UserID = ?");
-$query->bind_param("i", $_SESSION['uid']);
-$query->execute();
-$result = $query->get_result();
-$user = $result->fetch_assoc();
-$query->close();
-
-// If phone is missing in DB, use user input
-if (!$user || empty($user['phone'])) {
-    if (!$phone) {
-        die("Error: Phone number not found. Please enter your phone number.");
-    }
-} else {
-    $phone = $user['phone']; // Use phone from DB if available
+// Validate phone number format again
+if (!preg_match('/^2547\d{8}$/', $phone)) {
+    die("Error: Invalid Safaricom phone number.");
 }
 
-// Format phone number to Safaricom standard (convert 07xx to 2547xx)
-$phone = preg_replace('/^0/', '254', trim($phone));
-
-// Safaricom M-Pesa credentials
+// M-Pesa API credentials
 $consumerKey = 'YOUR_CONSUMER_KEY';
 $consumerSecret = 'YOUR_CONSUMER_SECRET';
 $shortCode = 'YOUR_SHORTCODE';
@@ -58,7 +43,7 @@ if (!isset($response->access_token)) {
 
 $access_token = $response->access_token;
 
-// Prepare STK push request data
+// Prepare STK push request
 $stkData = [
     "BusinessShortCode" => $shortCode,
     "Password" => $password,
