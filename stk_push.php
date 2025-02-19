@@ -76,4 +76,5 @@ if (isset($response->CheckoutRequestID)) {
     error_log("STK Push Failed: " . json_encode($response));
     die("STK Push failed. Please try again later.");
 }
+
 ?>
