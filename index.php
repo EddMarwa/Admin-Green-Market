@@ -22,7 +22,7 @@ include 'init.php';
                     // Check if the image exists, if not, use a default placeholder image
                     
                     if (empty($item['Image']) || !file_exists($imagePath)) {
-                       $imagePath = 'images/img.jpg'; // Placeholder image if no image is found
+                       $imagePath = 'images/img.jpg'; // Placeholder image 
                     }
 
                     echo '<img class="img-responsive" src="' . $imagePath . '" alt="' . $item['Name'] . '">';
