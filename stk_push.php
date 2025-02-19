@@ -8,10 +8,31 @@ if (!isset($_SESSION['uid'])) {
 
 $lease_id = $_GET['lease_id'] ?? null;
 $amount = $_GET['amount'] ?? null;
+$phone = $_POST['phone'] ?? null; // Get phone input from form
 
 if (!$lease_id || !$amount || !is_numeric($amount)) {
     die("Invalid payment request.");
 }
+
+// Fetch user phone number from database if available
+$query = $conn->prepare("SELECT phone FROM users WHERE UserID = ?");
+$query->bind_param("i", $_SESSION['uid']);
+$query->execute();
+$result = $query->get_result();
+$user = $result->fetch_assoc();
+$query->close();
+
+// If phone is missing in DB, use user input
+if (!$user || empty($user['phone'])) {
+    if (!$phone) {
+        die("Error: Phone number not found. Please enter your phone number.");
+    }
+} else {
+    $phone = $user['phone']; // Use phone from DB if available
+}
+
+// Format phone number to Safaricom standard (convert 07xx to 2547xx)
+$phone = preg_replace('/^0/', '254', trim($phone));
 
 // Safaricom M-Pesa credentials
 $consumerKey = 'YOUR_CONSUMER_KEY';
@@ -21,21 +42,6 @@ $passkey = 'YOUR_PASSKEY';
 $callbackUrl = 'https://yourwebsite.com/stk_callback.php';
 $timestamp = date('YmdHis');
 $password = base64_encode($shortCode . $passkey . $timestamp);
-
-// Fetch user phone number securely
-$query = $conn->prepare("SELECT phone FROM users WHERE UserID = ?");
-$query->bind_param("i", $_SESSION['uid']);
-$query->execute();
-$result = $query->get_result();
-$user = $result->fetch_assoc();
-$query->close();
-
-if (!$user || empty($user['phone'])) {
-    die("Error: Phone number not found. Please update your profile.");
-}
-
-// Format phone number to Safaricom standard (convert 07xx to 2547xx)
-$phone = preg_replace('/^0/', '254', trim($user['phone']));
 
 // Get M-Pesa access token
 $ch = curl_init();

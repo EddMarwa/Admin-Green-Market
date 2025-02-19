@@ -112,6 +112,12 @@ $securityDeposit = $product['Price'] * 0.5;
             </select>
         </div>
 
+        <div class="form-group">
+    <label for="phone">Enter M-Pesa Phone Number:</label>
+    <input type="text" name="phone" id="phone" placeholder="07XXXXXXXX" required pattern="^07\d{8}$">
+</div>
+
+
         <p>Total Estimated Cost: <span class="total-cost" id="total_cost">KES 0.00</span></p>
 
         <div class="form-group">
