@@ -23,7 +23,7 @@ $timestamp = date('YmdHis');
 $password = base64_encode($shortCode . $passkey . $timestamp);
 
 // Fetch user phone number securely
-$query = $conn->prepare("SELECT phone FROM users WHERE id = ?");
+$query = $conn->prepare("SELECT phone FROM users WHERE UserID = ?");
 $query->bind_param("i", $_SESSION['uid']);
 $query->execute();
 $result = $query->get_result();
