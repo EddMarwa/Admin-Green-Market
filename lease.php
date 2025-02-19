@@ -112,10 +112,12 @@ $securityDeposit = $product['Price'] * 0.5;
             </select>
         </div>
 
-        <div class="form-group">
-    <label for="phone">Enter M-Pesa Phone Number:</label>
-    <input type="text" name="phone" id="phone" placeholder="07XXXXXXXX" required pattern="^07\d{8}$">
-</div>
+        <form action="stk_push.php?lease_id=<?= $lease_id; ?>&amount=<?= $amount; ?>" method="post">
+            <label for="phone">Enter M-Pesa Phone Number:</label>
+            <input type="text" name="phone" id="phone" placeholder="07XXXXXXXX" required pattern="^07\d{8}$">
+            <button type="submit">Pay Now</button>
+        </form>
+
 
 
         <p>Total Estimated Cost: <span class="total-cost" id="total_cost">KES 0.00</span></p>
