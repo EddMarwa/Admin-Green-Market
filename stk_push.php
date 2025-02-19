@@ -2,10 +2,14 @@
 session_start();
 include 'config.php';
 
+if (!isset($_SESSION['uid'])) {
+    die("Error: You must be logged in to make a payment.");
+}
+
 $lease_id = $_GET['lease_id'] ?? null;
 $amount = $_GET['amount'] ?? null;
 
-if (!$lease_id || !$amount) {
+if (!$lease_id || !$amount || !is_numeric($amount)) {
     die("Invalid payment request.");
 }
 
@@ -18,7 +22,7 @@ $callbackUrl = 'https://yourwebsite.com/stk_callback.php';
 $timestamp = date('YmdHis');
 $password = base64_encode($shortCode . $passkey . $timestamp);
 
-// Get user phone number
+// Fetch user phone number securely
 $query = $conn->prepare("SELECT phone FROM users WHERE id = ?");
 $query->bind_param("i", $_SESSION['uid']);
 $query->execute();
@@ -26,12 +30,12 @@ $result = $query->get_result();
 $user = $result->fetch_assoc();
 $query->close();
 
-if (!$user) {
-    die("User not found.");
+if (!$user || empty($user['phone'])) {
+    die("Error: Phone number not found. Please update your profile.");
 }
 
-$phone = $user['phone'];
-$phone = preg_replace('/^0/', '254', $phone); // Convert 07xx to 2547xx
+// Format phone number to Safaricom standard (convert 07xx to 2547xx)
+$phone = preg_replace('/^0/', '254', trim($user['phone']));
 
 // Get M-Pesa access token
 $ch = curl_init();
@@ -42,18 +46,19 @@ $response = json_decode(curl_exec($ch));
 curl_close($ch);
 
 if (!isset($response->access_token)) {
-    die("Failed to obtain access token.");
+    error_log("M-Pesa Token Error: " . json_encode($response));
+    die("Failed to obtain M-Pesa access token.");
 }
 
 $access_token = $response->access_token;
 
-// Initiate STK push
+// Prepare STK push request data
 $stkData = [
     "BusinessShortCode" => $shortCode,
     "Password" => $password,
     "Timestamp" => $timestamp,
     "TransactionType" => "CustomerPayBillOnline",
-    "Amount" => $amount,
+    "Amount" => (int)$amount,
     "PartyA" => $phone,
     "PartyB" => $shortCode,
     "PhoneNumber" => $phone,
@@ -75,6 +80,7 @@ if (isset($response->CheckoutRequestID)) {
     $_SESSION['checkout_request_id'] = $response->CheckoutRequestID;
     echo "<script>alert('STK Push Sent. Enter your M-Pesa PIN to complete payment.'); window.location.href='lease_status.php?lease_id=$lease_id';</script>";
 } else {
-    die("STK Push failed.");
+    error_log("STK Push Failed: " . json_encode($response));
+    die("STK Push failed. Please try again later.");
 }
 ?>
