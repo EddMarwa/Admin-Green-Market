@@ -18,12 +18,4 @@ if ($resultCode == 0) {
 } else {
     file_put_contents($logFile, "Payment failed.\n", FILE_APPEND);
 }
-
-
-if ($response['ResponseCode'] == "0") { 
-    header("Location: receipt.php?lease_id=" . $lease_id);
-    exit();
-} else {
-    die("STK Push failed. Please try again.");
-}
 ?>

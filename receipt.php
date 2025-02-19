@@ -1,10 +1,12 @@
 <?php
 session_start();
 include 'config.php';
-require 'vendor/autoload.php'; // Ensure you have Endroid QR Code library installed
+require 'vendor/autoload.php'; // Ensure Endroid QR Code library is installed
 
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel;
 
 // Ensure user is logged in
 if (!isset($_SESSION['uid'])) {
@@ -25,14 +27,15 @@ $payment = $result->fetch_assoc();
 $query->close();
 
 // Generate QR Code
-$qrData = "Lease ID: " . $payment['lease_id'] . "\nAmount: KES " . number_format($payment['amount'], 2) . "\nDate: " . $payment['payment_date'];
+$qrData = "Lease ID: {$payment['lease_id']}\nAmount: KES " . number_format($payment['amount'], 2) . "\nDate: {$payment['payment_date']}";
 $qrCode = QrCode::create($qrData)
+    ->setEncoding(new Encoding('UTF-8'))
+    ->setErrorCorrectionLevel(ErrorCorrectionLevel::Medium)
     ->setSize(150)
     ->setMargin(10);
 $writer = new PngWriter();
-$qrCodePath = 'images/qrcode_' . $payment['lease_id'] . '.png';
-file_put_contents($qrCodePath, $writer->write($qrCode)->getString());
-
+$qrImage = $writer->write($qrCode)->getString();
+$qrCodeBase64 = 'data:image/png;base64,' . base64_encode($qrImage); // Embed QR as Base64
 ?>
 
 <!DOCTYPE html>
@@ -97,7 +100,7 @@ file_put_contents($qrCodePath, $writer->write($qrCode)->getString());
         </div>
 
         <div class="qr-code">
-            <img src="<?= $qrCodePath ?>" alt="QR Code">
+            <img src="<?= $qrCodeBase64 ?>" alt="QR Code">
             <p><small>Scan to verify</small></p>
         </div>
 
@@ -109,17 +112,28 @@ file_put_contents($qrCodePath, $writer->write($qrCode)->getString());
         function downloadReceipt() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
+            
             doc.setTextColor(76, 175, 80);
             doc.setFontSize(18);
             doc.text("Payment Receipt", 20, 20);
             doc.setFontSize(14);
             doc.setTextColor(0, 0, 0);
+            
             doc.text("Lease ID: <?= $payment['lease_id'] ?>", 20, 40);
             doc.text("Phone Number: <?= $payment['phone_number'] ?>", 20, 50);
             doc.text("Amount Paid: KES <?= number_format($payment['amount'], 2) ?>", 20, 60);
             doc.text("Payment Method: <?= $payment['payment_method'] ?>", 20, 70);
             doc.text("Date: <?= $payment['payment_date'] ?>", 20, 80);
-            doc.save("Receipt_<?= $payment['lease_id'] ?>.pdf");
+
+            // Add QR code
+            const qrImg = "<?= $qrCodeBase64 ?>";
+            const img = new Image();
+            img.src = qrImg;
+            img.onload = function() {
+                doc.addImage(img, 'PNG', 70, 90, 60, 60);
+                doc.text("Scan to verify", 75, 160);
+                doc.save("Receipt_<?= $payment['lease_id'] ?>.pdf");
+            };
         }
     </script>
 
