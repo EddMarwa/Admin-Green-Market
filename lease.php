@@ -41,28 +41,6 @@ $securityDeposit = $product['Price'] * 0.5;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lease <?= htmlspecialchars($product['Name']) ?></title>
     <link rel="stylesheet" href="layout/css/front.css">
-    <style>
-        .lease-options {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-        }
-        .lease-options div {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .lease-options label {
-            font-size: 14px;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .lease-options input {
-            width: 100%;
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
 
@@ -100,7 +78,12 @@ $securityDeposit = $product['Price'] * 0.5;
 
         <div class="form-group">
             <label for="security_deposit">Security Deposit (Refundable):</label>
-            <input type="number" name="security_deposit" id="security_deposit" value="<?= number_format($securityDeposit, 2) ?>" readonly>
+            <input type="text" name="security_deposit" id="security_deposit" value="<?= number_format($securityDeposit, 2) ?>" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="total_cost">Total Cost:</label>
+            <input type="text" id="total_cost" name="total_cost" readonly>
         </div>
 
         <div class="form-group">
@@ -116,7 +99,6 @@ $securityDeposit = $product['Price'] * 0.5;
             <label for="phone">Enter M-Pesa Phone Number:</label>
             <input type="text" name="phone" id="phone" placeholder="07XXXXXXXX" required pattern="^07\d{8}$">
         </div>
-
 
         <button type="submit" class="lease-btn">Confirm Lease</button>
     </form>
@@ -147,8 +129,9 @@ $securityDeposit = $product['Price'] * 0.5;
                 days = 1;
             }
 
-            let totalCost = (months * productPrice) + (days * pricePerDay);
-            totalCostDisplay.textContent = "KES " + totalCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            let leasingCost = (months * productPrice) + (days * pricePerDay);
+            let totalCost = leasingCost + defaultDeposit;
+            totalCostDisplay.value = "KES " + totalCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
         }
 
         leaseMonths.addEventListener('input', updateCosts);
