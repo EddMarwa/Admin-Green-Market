@@ -19,7 +19,7 @@ include 'init.php';
                     // Construct image path (the 'Image' field should store only the filename like 'item1.jpg')
                     $imagePath = 'images/' . $item['Image'];
 
-                    // Check if the image exists, if not, use a default placeholder image
+                    // Check if the image exists, use a default placeholder image
                     
                     if (empty($item['Image']) || !file_exists($imagePath)) {
                        $imagePath = 'images/img.jpg'; // Placeholder image 
