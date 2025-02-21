@@ -9,7 +9,7 @@ if (!isset($_SESSION['uid'])) {
 $user_id = $_SESSION['uid'];
 
 // Validate and fetch required parameters securely
-$item_id = filter_input(INPUT_GET, 'item_id', FILTER_VALIDATE_INT);
+$item_id = filter_input(INPUT_GET, 'item_ID', FILTER_VALIDATE_INT);
 $item_name = filter_input(INPUT_GET, 'item_name', FILTER_SANITIZE_STRING);
 $item_price = filter_input(INPUT_GET, 'item_price', FILTER_VALIDATE_FLOAT);
 $isLease = filter_input(INPUT_GET, 'lease', FILTER_SANITIZE_STRING) === 'yes';
@@ -21,7 +21,7 @@ if (!$item_id || !$item_name || !$item_price || $item_price <= 0) {
 }
 
 // Fetch product image from `items` table
-$query = $conn->prepare("SELECT Image FROM items WHERE item_ID = ?");
+$query = $conn->prepare("SELECT Image FROM items WHERE item_id = ?");
 $query->bind_param("i", $item_id);
 $query->execute();
 $result = $query->get_result();
