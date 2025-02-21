@@ -1,0 +1,32 @@
+[21-Feb-2025 12:01:15 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 34
+[21-Feb-2025 12:01:17 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 58
+[21-Feb-2025 12:01:17 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 64
+[21-Feb-2025 12:01:18 Europe/Berlin] STK Push Failed: {"requestId":"6543-425e-a177-2e84b1462ecd1427017","errorCode":"400.002.02","errorMessage":"Bad Request - Invalid BusinessShortCode"}
+[21-Feb-2025 12:03:33 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 34
+[21-Feb-2025 12:03:34 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 58
+[21-Feb-2025 12:03:34 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 64
+[21-Feb-2025 12:03:35 Europe/Berlin] STK Push Failed: {"requestId":"bbcd-4a89-bd1a-6ecdc639893b2849252","errorCode":"400.002.02","errorMessage":"Bad Request - Invalid BusinessShortCode"}
+[21-Feb-2025 12:05:47 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 33
+[21-Feb-2025 12:05:49 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 57
+[21-Feb-2025 12:05:49 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 63
+[21-Feb-2025 12:05:50 Europe/Berlin] STK Push Failed: {"requestId":"5fe8-4261-87f6-6d7d41adc6c31054476","errorCode":"400.002.02","errorMessage":"Bad Request - Invalid BusinessShortCode"}
+[21-Feb-2025 12:08:35 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 33
+[21-Feb-2025 12:08:36 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 57
+[21-Feb-2025 12:08:36 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 63
+[21-Feb-2025 12:08:37 Europe/Berlin] STK Push Failed: {"requestId":"bbcd-4a89-bd1a-6ecdc639893b2849341","errorCode":"400.002.02","errorMessage":"Bad Request - Invalid BusinessShortCode"}
+[21-Feb-2025 13:01:22 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 33
+[21-Feb-2025 13:01:23 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 57
+[21-Feb-2025 13:01:23 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 63
+[21-Feb-2025 13:01:25 Europe/Berlin] STK Push Failed: {"requestId":"2adc-4be5-8019-05163f8aa67f120603","errorCode":"400.002.02","errorMessage":"Bad Request - Invalid BusinessShortCode"}
+[21-Feb-2025 13:05:21 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 33
+[21-Feb-2025 13:05:22 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 57
+[21-Feb-2025 13:05:22 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 63
+[21-Feb-2025 13:05:24 Europe/Berlin] STK Push Failed: {"requestId":"5fe8-4261-87f6-6d7d41adc6c31055529","errorCode":"400.002.02","errorMessage":"Bad Request - Invalid BusinessShortCode"}
+[21-Feb-2025 13:07:18 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 33
+[21-Feb-2025 13:07:19 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 57
+[21-Feb-2025 13:07:19 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 63
+[21-Feb-2025 13:07:20 Europe/Berlin] STK Push Failed: {"requestId":"2adc-4be5-8019-05163f8aa67f120724","errorCode":"400.002.02","errorMessage":"Bad Request - Invalid BusinessShortCode"}
+[21-Feb-2025 13:07:29 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 57
+[21-Feb-2025 13:07:29 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 63
+[21-Feb-2025 13:07:30 Europe/Berlin] STK Push Failed: {"requestId":"2adc-4be5-8019-05163f8aa67f120726","errorCode":"500.003.02","errorMessage":"System is busy. Please try again in few minutes."}
+[21-Feb-2025 13:07:50 Europe/Berlin] STK Push Failed: {"requestId":"bbcd-4a89-bd1a-6ecdc639893b2850319","errorCode":"400.002.02","errorMessage":"Bad Request - Invalid Amount"}
