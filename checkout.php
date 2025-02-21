@@ -9,7 +9,7 @@ if (!isset($_SESSION['uid'])) {
 $user_id = $_SESSION['uid'];
 
 // Validate and fetch required parameters securely
-$item_id = filter_input(INPUT_GET, 'item_ID', FILTER_VALIDATE_INT);
+$item_id = filter_input(INPUT_GET, 'item_id', FILTER_VALIDATE_INT);
 $item_name = filter_input(INPUT_GET, 'item_name', FILTER_SANITIZE_STRING);
 $item_price = filter_input(INPUT_GET, 'item_price', FILTER_VALIDATE_FLOAT);
 $isLease = filter_input(INPUT_GET, 'lease', FILTER_SANITIZE_STRING) === 'yes';
@@ -28,8 +28,8 @@ $result = $query->get_result();
 $product = $result->fetch_assoc();
 
 // Check if an image exists; otherwise, use default image
-$imageFile = (!empty($product['Image']) && file_exists("images/" . $product['Image'])) ? 
-             "Images/" . $product['Image'] : 
+$imageFile = (!empty($product['Image']) && file_exists("uploads/" . $product['Image'])) ? 
+             "uploads/" . $product['Image'] : 
              "images/img.jpg"; 
 
 // Validate lease duration if leasing
