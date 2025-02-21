@@ -7,7 +7,7 @@ date_default_timezone_set('Africa/Nairobi');
 $consumerKey = "kvhNgfy78Ze7ccdCJeDA446vQdq8sa1U9ToD3eoj1VQHV9KU";  // Replace with actual Consumer Key
 $consumerSecret = "UifCLQCB30AvDzmBUXvOdpGxc5C0GThfmOpE9NM9cldkbg663W0Y2OlvUDniNYSH";  // Replace with actual Consumer Secret
 $shortcode = "174379"; // Test Paybill Number
-$passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"; // Replace with actual Passkey
+$passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"; 
 
 // Get form data
 $phone = $_POST['phone'];
