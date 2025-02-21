@@ -29,7 +29,7 @@ $product = $result->fetch_assoc();
 
 // Check if an image exists; otherwise, use default image
 $imageFile = (!empty($product['Image']) && file_exists("images/" . $product['Image'])) ? 
-             "uploads/" . $product['Image'] : 
+             "images/" . $product['Image'] : 
              "images/img.jpg"; 
 
 // Validate lease duration if leasing
