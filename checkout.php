@@ -28,7 +28,7 @@ $result = $query->get_result();
 $product = $result->fetch_assoc();
 
 // Check if an image exists; otherwise, use default image
-$imageFile = (!empty($product['Image']) && file_exists("uploads/" . $product['Image'])) ? 
+$imageFile = (!empty($product['Image']) && file_exists("images/" . $product['Image'])) ? 
              "uploads/" . $product['Image'] : 
              "images/img.jpg"; 
 
