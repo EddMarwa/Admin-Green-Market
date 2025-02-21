@@ -59,9 +59,9 @@ if ($isLease) {
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: rgb(28, 144, 13);
+            background-color: #81C784;
         }
-        .checkout-container {
+        .checkout-container {  
             width: 50%;
             margin: auto;
             background: #fff;
