@@ -20,14 +20,17 @@ if (!$item_id || !$item_name || !$item_price || $item_price <= 0) {
     die("Error: Invalid product details.");
 }
 
-// Fetch product image from database
-$query = $conn->prepare("SELECT image_path FROM products WHERE id = ?");
+// Fetch product image from `items` table
+$query = $conn->prepare("SELECT Image FROM items WHERE id = ?");
 $query->bind_param("i", $item_id);
 $query->execute();
 $result = $query->get_result();
 $product = $result->fetch_assoc();
 
-$imageFile = $product ? $product['image_path'] : "images/default.jpg"; // Fallback image
+// Check if an image exists; otherwise, use default image
+$imageFile = (!empty($product['Image']) && file_exists("uploads/" . $product['Image'])) ? 
+             "uploads/" . $product['Image'] : 
+             "images/img.jpg"; 
 
 // Validate lease duration if leasing
 if ($isLease) {
