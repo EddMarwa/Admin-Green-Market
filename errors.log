@@ -30,3 +30,19 @@
 [21-Feb-2025 13:07:29 Europe/Berlin] PHP Warning:  Undefined variable $shortCode in C:\xampp\htdocs\eCommerce\stk_push.php on line 63
 [21-Feb-2025 13:07:30 Europe/Berlin] STK Push Failed: {"requestId":"2adc-4be5-8019-05163f8aa67f120726","errorCode":"500.003.02","errorMessage":"System is busy. Please try again in few minutes."}
 [21-Feb-2025 13:07:50 Europe/Berlin] STK Push Failed: {"requestId":"bbcd-4a89-bd1a-6ecdc639893b2850319","errorCode":"400.002.02","errorMessage":"Bad Request - Invalid Amount"}
+[21-Feb-2025 13:14:16 Europe/Berlin] PHP Warning:  require(vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\eCommerce\lease_status.php on line 4
+[21-Feb-2025 13:14:16 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'vendor/autoload.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\eCommerce\lease_status.php:4
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\eCommerce\lease_status.php on line 4
+[21-Feb-2025 13:15:58 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'leases.lease_start' in 'field list' in C:\xampp\htdocs\eCommerce\lease_status.php:18
+Stack trace:
+#0 C:\xampp\htdocs\eCommerce\lease_status.php(18): mysqli->prepare('SELECT leases.i...')
+#1 {main}
+  thrown in C:\xampp\htdocs\eCommerce\lease_status.php on line 18
+[21-Feb-2025 13:19:26 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: The number of variables must match the number of parameters in the prepared statement in C:\xampp\htdocs\eCommerce\lease_status.php:19
+Stack trace:
+#0 C:\xampp\htdocs\eCommerce\lease_status.php(19): mysqli_stmt->bind_param('ii', '30', 30)
+#1 {main}
+  thrown in C:\xampp\htdocs\eCommerce\lease_status.php on line 19
+[21-Feb-2025 13:21:55 Europe/Berlin] PHP Warning:  Undefined variable $lease_id in C:\xampp\htdocs\eCommerce\lease_status.php on line 5
