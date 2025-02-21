@@ -21,7 +21,7 @@ if (!$item_id || !$item_name || !$item_price || $item_price <= 0) {
 }
 
 // Fetch product image from `items` table
-$query = $conn->prepare("SELECT Image FROM items WHERE id = ?");
+$query = $conn->prepare("SELECT Image FROM items WHERE item_ID = ?");
 $query->bind_param("i", $item_id);
 $query->execute();
 $result = $query->get_result();
