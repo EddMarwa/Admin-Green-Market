@@ -8,21 +8,30 @@ if (!isset($_SESSION['uid'])) {
 }
 $user_id = $_SESSION['uid'];
 
-// Validate and fetch required parameters
-$item_id = $_GET['item_id'] ?? null;
-$item_name = $_GET['item_name'] ?? null;
-$item_price = $_GET['item_price'] ?? null;
-$isLease = isset($_GET['lease']) && $_GET['lease'] === 'yes';
-$leaseDuration = $_GET['lease_duration'] ?? null;
+// Validate and fetch required parameters securely
+$item_id = filter_input(INPUT_GET, 'item_id', FILTER_VALIDATE_INT);
+$item_name = filter_input(INPUT_GET, 'item_name', FILTER_SANITIZE_STRING);
+$item_price = filter_input(INPUT_GET, 'item_price', FILTER_VALIDATE_FLOAT);
+$isLease = filter_input(INPUT_GET, 'lease', FILTER_SANITIZE_STRING) === 'yes';
+$leaseDuration = filter_input(INPUT_GET, 'lease_duration', FILTER_VALIDATE_INT) ?? 0;
 
 // Validate required parameters
-if (!$item_id || !$item_name || !$item_price || (!is_numeric($item_price) || $item_price <= 0)) {
+if (!$item_id || !$item_name || !$item_price || $item_price <= 0) {
     die("Error: Invalid product details.");
 }
 
+// Fetch product image from database
+$query = $conn->prepare("SELECT image_path FROM products WHERE id = ?");
+$query->bind_param("i", $item_id);
+$query->execute();
+$result = $query->get_result();
+$product = $result->fetch_assoc();
+
+$imageFile = $product ? $product['image_path'] : "images/default.jpg"; // Fallback image
+
 // Validate lease duration if leasing
 if ($isLease) {
-    if (!is_numeric($leaseDuration) || $leaseDuration <= 0) {
+    if ($leaseDuration <= 0) {
         die("Error: Invalid lease duration.");
     }
 
@@ -47,7 +56,7 @@ if ($isLease) {
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color:rgb(28, 144, 13);
+            background-color: rgb(28, 144, 13);
         }
         .checkout-container {
             width: 50%;
@@ -58,7 +67,7 @@ if ($isLease) {
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
         }
         .product-summary img {
-            width: 100px;
+            width: 200px;
             height: auto;
             border-radius: 5px;
         }
@@ -94,7 +103,7 @@ if ($isLease) {
             <p><strong>Security Deposit:</strong> KES <?= number_format($securityDeposit, 2) ?> (Refundable)</p>
         <?php endif; ?>
 
-        <img src="images/<?= htmlspecialchars($item_name) ?>.jpg" alt="Product Image">
+        <img src="<?= htmlspecialchars($imageFile) ?>" alt="Product Image">
     </div>
 
     <form action="process_checkout.php" method="POST">
