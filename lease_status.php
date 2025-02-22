@@ -1,47 +1,30 @@
 <?php
 session_start();
 include 'config.php';
-require 'vendor/autoload.php'; // Ensure you have the PHP QR Code library
-use Endroid\QrCode\QrCode;
-use Endroid\QrCode\Writer\PngWriter;
 
 // Ensure user is logged in
 if (!isset($_SESSION['uid'])) {
-    die("Error: You must be logged in to view this page!");
+    die("Error: You must be logged in to view this page!!!");
 }
 
-// Get lease ID from URL
-$lease_id = $_GET['lease_id'] ?? null;
-if (!$lease_id || !is_numeric($lease_id)) {
-    die("Invalid lease selection.");
+$user_id = $_SESSION['uid'];
+$item_id = $_GET['item_id'] ?? null;
+if (!$item_id || !is_numeric($item_id)) {
+    die("Invalid product selection.");
 }
 
 // Fetch lease details
-$query = $conn->prepare("SELECT id, user_id, item_id, start_date, End_Date, Total_Cost, security_deposit, payment_method, status, lease_months, lease_days, payment_status FROM leases WHERE id = ?");
-$query->bind_param("i", $lease_id);
+$query = $conn->prepare("SELECT i.Name, l.lease_duration, l.start_date, l.End_Date, l.security_deposit, l.Total_Cost, l.payment_method, l.status FROM leases l JOIN items i ON l.item_id = i.Item_ID WHERE l.user_id = ? AND l.item_id = ? LIMIT 1");
+$query->bind_param("ii", $user_id, $item_id);
 $query->execute();
 $result = $query->get_result();
 
 if ($result->num_rows > 0) {
     $lease = $result->fetch_assoc();
 } else {
-    die("Lease not found.");
+    die("Lease details not found.");
 }
 $query->close();
-
-// Fetch item details using item_id
-$item_query = $conn->prepare("SELECT name, price FROM items WHERE id = ?");
-$item_query->bind_param("i", $lease['item_id']);
-$item_query->execute();
-$item_result = $item_query->get_result();
-$item = $item_result->fetch_assoc();
-$item_query->close();
-
-// Generate QR Code with lease details
-$qrData = "Lease ID: {$lease['id']}\nItem: {$item['name']}\nStart: {$lease['start_date']}\nDuration: {$lease['lease_months']} months, {$lease['lease_days']} days\nStatus: {$lease['payment_status']}";
-$qrCode = QrCode::create($qrData)->setSize(150);
-$writer = new PngWriter();
-$qrOutput = $writer->write($qrCode)->getString();
 ?>
 
 <!DOCTYPE html>
@@ -49,34 +32,55 @@ $qrOutput = $writer->write($qrCode)->getString();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lease Status</title>
+    <title>Lease Status - <?= htmlspecialchars($lease['Name']) ?></title>
     <link rel="stylesheet" href="layout/css/front.css">
     <style>
-        .receipt-container {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            border: 2px solid #4CAF50;
-            border-radius: 10px;
-            background-color: #f9f9f9;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f5e9;
             text-align: center;
+            padding: 20px;
         }
-        .receipt-container img {
-            width: 150px;
-            height: 150px;
+        .status-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        h2 {
+            color: #388e3c;
+        }
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #388e3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-btn:hover {
+            background-color: #2e7d32;
         }
     </style>
 </head>
 <body>
-    <div class="receipt-container">
-        <h2>Lease Receipt</h2>
-        <p><strong>Item:</strong> <?= htmlspecialchars($item['name']) ?></p>
-        <p><strong>Lease Start:</strong> <?= htmlspecialchars($lease['start_date']) ?></p>
-        <p><strong>Duration:</strong> <?= htmlspecialchars($lease['lease_months']) ?> months, <?= htmlspecialchars($lease['lease_days']) ?> days</p>
-        <p><strong>Status:</strong> <?= htmlspecialchars($lease['payment_status']) ?></p>
+    <div class="status-container">
+        <h2>Lease Summary</h2>
+        <p><strong>Item:</strong> <?= htmlspecialchars($lease['Name']) ?></p>
+        <p><strong>Lease Duration:</strong> <?= $lease['lease_duration'] ?> months</p>
+        <p><strong>Start Date:</strong> <?= $lease['start_date'] ?></p>
+        <p><strong>End Date:</strong> <?= $lease['End_Date'] ?></p>
+        <p><strong>Security Deposit:</strong> KES <?= number_format($lease['security_deposit'], 2) ?></p>
         <p><strong>Total Cost:</strong> KES <?= number_format($lease['Total_Cost'], 2) ?></p>
-        <h3>Scan for Lease Details</h3>
-        <img src="data:image/png;base64,<?= base64_encode($qrOutput) ?>" alt="QR Code">
+        <p><strong>Payment Method:</strong> <?= ucfirst($lease['payment_method']) ?></p>
+        <p><strong>Status:</strong> <span style="color: <?= ($lease['status'] == 'approved' || $lease['status'] == 'active') ? 'green' : 'red'; ?>; font-weight: bold;"> <?= ucfirst($lease['status']) ?> </span></p>
+        <a href="index.php" class="back-btn">Back to Home</a>
     </div>
 </body>
 </html>
