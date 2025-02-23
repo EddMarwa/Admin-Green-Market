@@ -9,6 +9,8 @@ if (!isset($_SESSION['uid'])) {
 
 $user_id = $_SESSION['uid'];
 $item_id = $_GET['item_id'] ?? null;
+
+// Debugging: Check if item_id is received
 if (!$item_id || !is_numeric($item_id)) {
     die("Invalid product selection.");
 }
