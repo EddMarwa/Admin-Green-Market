@@ -8,16 +8,22 @@ if (!isset($_SESSION['uid'])) {
 }
 
 $user_id = $_SESSION['uid'];
-$item_id = $_GET['item_id'] ?? null;
+$lease_id = $_GET['lease_id'] ?? null; // Corrected parameter
 
-// Debugging: Check if item_id is received
-if (!$item_id || !is_numeric($item_id)) {
+// Validate lease_id proper
+if (!$lease_id || !ctype_digit($lease_id)) {  
     die("Invalid product selection.");
 }
 
 // Fetch lease details
-$query = $conn->prepare("SELECT i.Name FROM leases l JOIN items i ON l.item_id = i.Item_ID WHERE l.user_id = ? AND l.item_id = ? LIMIT 1");
-$query->bind_param("ii", $user_id, $item_id);
+$query = $conn->prepare("
+    SELECT i.Name 
+    FROM leases l 
+    JOIN items i ON l.item_id = i.Item_ID 
+    WHERE l.user_id = ? AND l.lease_id = ? 
+    LIMIT 1
+");
+$query->bind_param("ii", $user_id, $lease_id);
 $query->execute();
 $result = $query->get_result();
 
