@@ -204,7 +204,7 @@ function redirectHome($theMsg, $url = NULL, $seconds = 3) { // 3 seconds as a de
         if (isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] !== '') { // This is to avoid the PHP error message that will appear if the user starting from that specific page and there wasn't any page originally coming from
             $url = $_SERVER['HTTP_REFERER']; // the page you are coming from
             $link = 'the Previous Page';
-        } else { // Here there is no page $_SERVER['HTTP_REFERER'] can refe to because user is starting from that specific page already
+        } else { // Here there is no page $_SERVER['HTTP_REFERER'] can refer to because user is starting from that specific page already
             $url  = 'index.php';
             $link = 'HomePage';
         }

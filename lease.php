@@ -42,7 +42,8 @@ $securityDeposit = $product['Price'] * 0.5;
     <title>Lease <?= htmlspecialchars($product['Name']) ?></title>
     <link rel="stylesheet" href="layout/css/front.css">
 </head>
-<body>
+
+<body>   
 
 <div class="lease-container">
     <h2>Lease <?= htmlspecialchars($product['Name']) ?></h2>
@@ -69,7 +70,7 @@ $securityDeposit = $product['Price'] * 0.5;
                     <input type="number" id="lease_days" name="lease_days" min="0" max="30" value="0">
                 </div>
             </div>
-        </div>
+        </div>  
 
         <div class="form-group">
             <label for="start_date">Lease Start Date:</label>
