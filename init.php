@@ -23,7 +23,6 @@ $func = 'includes/functions/'; // Functions Directory
 $css  = 'layout/css/'; // CSS Directory    // $css variable is used in eCommerce\includes\templates\header.php
 $js   = 'layout/js/';  // JS Directory     // $js variable is used in eCommerce\includes\templates\footer.php
 
-
 // Including the important files
 include $func . 'functions.php'; // functions file
 include $lang . 'english.php'; // Language file (Note: including language files MUST be at first and before including any other files)
