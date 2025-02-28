@@ -16,8 +16,6 @@ if (isset($_SESSION['user'])) {
     $sessionUser = $_SESSION['user']; // This variable will be used in various files! (e.g. eCommerce\includes\templates\header.php) Check its References (usages) by clicking Shift + F12 in Visual Studio Code
 }
 
-
-
 // Routes
 $tpl  = 'includes/templates/'; // Templates Directory
 $lang = 'includes/languages/'; // Languages directory (Note: including language files MUST be at first and before including any other files)
