@@ -6,8 +6,6 @@ if (!isset($_SESSION['uid'])) {
     die("Error: You must be logged in to proceed.");
 }
 
-
-
 $user_id = $_SESSION['uid'];
 $item_id = $_POST['item_id'] ?? null;
 $lease_months = $_POST['lease_months'] ?? 0;
