@@ -52,6 +52,5 @@ if ($payment_method === 'mpesa') {
 } else {
     die("Currently, only M-Pesa payments are supported.");
 }
-?>  
-
+?> 
 
