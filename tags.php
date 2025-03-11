@@ -5,8 +5,6 @@ session_start();
 include 'init.php';
 // echo 'Categories Page<br>Your Category ID is <strong>' . $_GET['pageid'] . '</strong> and Category Name is <strong>' . str_replace('-', ' ', $_GET['pagename']) . '</strong>'; // Coming from categories in header.php
 ?>
-
-
     <div class="container">
         <div class="row">
 <?php
