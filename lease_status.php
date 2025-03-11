@@ -10,7 +10,7 @@ if (!isset($_SESSION['uid'])) {
 $user_id = $_SESSION['uid'];
 $lease_id = $_GET['lease_id'] ?? null; // Corrected parameter
 
-// Validates lease_id properly
+// Validates lease_ids properly
 if (!$lease_id || !ctype_digit($lease_id)) {  
     die("Invalid product selection.");
 }
