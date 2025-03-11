@@ -15,6 +15,7 @@ if (!$lease_id || !ctype_digit($lease_id)) {
     die("Invalid product selection.");
 }
 
+
 // Fetch lease details
 $query = $conn->prepare("
     SELECT i.Name 
