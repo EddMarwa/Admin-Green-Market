@@ -22,6 +22,7 @@ if (!preg_match('/^07\d{8}$/', $phone)) {
     die("Error: Invalid phone number format. Use 07XXXXXXXX.");
 }
 
+
 // Convert phone number to Safaricom format (07XXXXXXXX → 2547XXXXXXXX)
 $phone = "254" . substr($phone, 1);
 
