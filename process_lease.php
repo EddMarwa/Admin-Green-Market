@@ -15,6 +15,7 @@ $phone = $_POST['phone'] ?? '';
 if (!$item_id || !is_numeric($item_id)) {
     die("Invalid lease request.");
 }
+
 // Validate phone number format (should be 07XXXXXXXX)
 if (!preg_match('/^07\d{8}$/', $phone)) {
     die("Error: Invalid phone number format. Use 07XXXXXXXX.");
