@@ -12,7 +12,6 @@ $lease_days = $_POST['lease_days'] ?? 0;
 $start_date = $_POST['start_date'] ?? '';
 $payment_method = $_POST['payment_method'] ?? '';
 $phone = $_POST['phone'] ?? '';
-
 if (!$item_id || !is_numeric($item_id)) {
     die("Invalid lease request.");
 }
