@@ -230,7 +230,6 @@ function countItems($item, $table) {
     return $stmt2->fetchColumn();
 }
 
-
 /* Getting the latest records function v1.0
 ** A function to get the latest items from the database (Ex: users, shop items, comments,...)
 ** Parameters are: $select: the field to select from database, $table: the table to select from and $limit: the number of records to get from the query, $order: ASC or DESC order
