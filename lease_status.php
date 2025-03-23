@@ -21,10 +21,10 @@ $query = $conn->prepare("
     SELECT i.Name 
     FROM leases l 
     JOIN items i ON l.item_id = i.Item_ID 
-    WHERE l.user_id = ? AND l.lease_id = ? 
+    WHERE l.user_id = ?
     LIMIT 1
 ");
-$query->bind_param("ii", $user_id, $lease_id);
+$query->bind_param("i", $user_id);
 $query->execute();
 $result = $query->get_result();
 
