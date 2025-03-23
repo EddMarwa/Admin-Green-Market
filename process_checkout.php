@@ -59,11 +59,22 @@ curl_close($ch);
 
 $responseData = json_decode($response);
 
-
+/*
 if (isset($responseData->ResponseCode) && $responseData->ResponseCode == "0") {
     echo "STK Push sent successfully. Check your phone to complete the payment.";
 } else {
     echo "Error: " . $responseData->errorMessage;
+}*/
+if (isset($responseData->ResponseCode) && $responseData->ResponseCode == "0") {
+    echo "STK Push sent successfully. Check your phone to complete the payment.";
+    echo '<script>
+        setTimeout(function(){
+            window.location.href = "index.php"; // Change to your homepage URL
+        }, 3000);
+    </script>';
+} else {
+    $error = isset($responseData->errorMessage) ? $responseData->errorMessage : "Unknown error";
+    echo "Error: " . $error;
+    error_log("M-Pesa STK Push Error: " . print_r($responseData, true));
 }
 ?>
-
