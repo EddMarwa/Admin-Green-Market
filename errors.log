@@ -66,3 +66,8 @@ Stack trace:
 #0 C:\xampp\htdocs\eCommerce\lease_status.php(19): mysqli->prepare('\r\n    SELECT i....')
 #1 {main}
   thrown in C:\xampp\htdocs\eCommerce\lease_status.php on line 19
+[22-Mar-2025 21:30:50 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'l.lease_id' in 'where clause' in C:\xampp\htdocs\eCommerce\lease_status.php:20
+Stack trace:
+#0 C:\xampp\htdocs\eCommerce\lease_status.php(20): mysqli->prepare('\r\n    SELECT i....')
+#1 {main}
+  thrown in C:\xampp\htdocs\eCommerce\lease_status.php on line 20

@@ -226,7 +226,6 @@ function countItems($item, $table) {
     $stmt2 = $con->prepare("SELECT COUNT(`$item`) FROM `$table`"); // COUNT() is an SQL function
     $stmt2->execute();
 
-
     return $stmt2->fetchColumn();
 }
 
