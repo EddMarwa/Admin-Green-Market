@@ -91,3 +91,4 @@ Stack trace:
 #0 C:\xampp\htdocs\eCommerce\lease_status.php(27): mysqli_stmt->bind_param('ii', 30)
 #1 {main}
   thrown in C:\xampp\htdocs\eCommerce\lease_status.php on line 27
+[23-Mar-2025 07:04:40 Europe/Berlin] STK Push Failed: {"requestId":"bbcd-4a89-bd1a-6ecdc639893b3563114","errorCode":"400.002.02","errorMessage":"Bad Request - Invalid Amount"}
