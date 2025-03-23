@@ -66,11 +66,11 @@ if (isset($responseData->ResponseCode) && $responseData->ResponseCode == "0") {
     echo "Error: " . $responseData->errorMessage;
 }*/
 if (isset($responseData->ResponseCode) && $responseData->ResponseCode == "0") {
-    echo "STK Push sent successfully. Check your phone to complete the payment.";
+    echo "STK Push sent successfully. Check your phone to complete the payment... Redirecting in 3 Seconds !!";
     echo '<script>
         setTimeout(function(){
             window.location.href = "index.php"; // Change to your homepage URL
-        }, 3000);
+        }, 5000);
     </script>';
 } else {
     $error = isset($responseData->errorMessage) ? $responseData->errorMessage : "Unknown error";
