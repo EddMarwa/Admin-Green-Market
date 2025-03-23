@@ -66,7 +66,7 @@ if (isset($responseData->ResponseCode) && $responseData->ResponseCode == "0") {
     echo "Error: " . $responseData->errorMessage;
 }*/
 if (isset($responseData->ResponseCode) && $responseData->ResponseCode == "0") {
-    echo "STK Push sent successfully. Check your phone to complete the payment... Redirecting in 3 Seconds !!";
+    echo "STK Push sent successfully. Check your phone to complete the payment... Redirecting in 3 Seconds !!!";
     echo '<script>
         setTimeout(function(){
             window.location.href = "index.php"; // Change to your homepage URL
