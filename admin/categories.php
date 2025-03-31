@@ -55,7 +55,6 @@ if (isset($_SESSION['Username'])) { // if there's a user stored in the Session, 
     <?php
                             // echo '<pre>', var_dump($cats), '</pre>';
                             // exit;
-
                             foreach ($cats as $cat) {
                                 echo '<div class="cat">';
                                     echo '<div class="hidden-buttons">';
