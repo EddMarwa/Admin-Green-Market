@@ -10,9 +10,6 @@ if (isset($_SESSION['Username'])) { // if there's a user stored in the Session, 
 
 
         include 'init.php';
-
-
-
         /* Start: Dashboard Page <body> */
         //echo 'Welcome ' . $_SESSION['Username'] . ' (from dashboard.php)<br>'; 
         // echo "<pre>MY SESSION ARRAY ELEMENTS ARE: \n", print_r($_SESSION), ' (from dashboard.php)</pre>';
