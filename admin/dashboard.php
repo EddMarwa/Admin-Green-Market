@@ -24,7 +24,7 @@ if (isset($_SESSION['Username'])) { // if there's a user stored in the Session, 
 
     ?>
         <div class="home-stats">
-            <div class="container text-center"><!--class home-stats will take any CSS edits but will be used only as a parent-->
+            <div class="container text-center"><!--class homestats will take any CSS edits but will be used only as a parent-->
                 <h1>Dashboard</h1>
                 <div class="row">
                     <div class="col-md-3">
