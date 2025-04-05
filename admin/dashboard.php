@@ -8,7 +8,6 @@ session_start();
 if (isset($_SESSION['Username'])) { // if there's a user stored in the Session, allow the user to access this page    // means if there is a session active (user is already logged in), don't show him the form login page and redirect him to dashboard.php
         $pageTitle = 'Dashboard'; // Check eCommerce\admin\includes\templates\header.php file    AND    eCommerce\admin\includes\functions\functions.php file
 
-
         include 'init.php';
         /* Start: Dashboard Page <body> */
         //echo 'Welcome ' . $_SESSION['Username'] . ' (from dashboard.php)<br>'; 
