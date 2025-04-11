@@ -18,6 +18,5 @@ ini_set('error_log', 'errors.log');
 
 
 
-
 ?>
 
