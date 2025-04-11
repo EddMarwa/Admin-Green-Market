@@ -18,7 +18,6 @@ if (isset($_SESSION['Username'])) { // if there's a user stored in the Session, 
 
         $numItems = 5; // The number of latest items (in latest items div)
         $latestItems = getLatest('*', 'items', 'Item_ID', $numItems); // Latest Items Array
-
         $numComments = 5; // The number of latest comments
         $latestComments = getLatest('*', 'items', 'Item_ID', $numItems); // Latest Items Array
 
