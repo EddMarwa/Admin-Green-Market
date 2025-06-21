@@ -160,12 +160,6 @@ if (isset($_SESSION['Username'])) { // if there's a user stored in the Session, 
         </div>
 
 
-
-
-
-
-
-
     <?php
         include $tpl . 'footer.php';
 
