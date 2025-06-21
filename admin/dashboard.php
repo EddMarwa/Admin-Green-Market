@@ -163,7 +163,6 @@ if (isset($_SESSION['Username'])) { // if there's a user stored in the Session, 
     <?php
         include $tpl . 'footer.php';
 
-
 } else { // Protected Routes (Protecting Routes): if there's no user stored in the Session, redirect the website guest/visitor to the eCommerce\admin\index.php page    // This is for security to prevent anyone from copy/paste the page URL directly in the browser address bar (i.e. the HTTP Request is GET method, not POST method), and to make sure the user is coming through a POST HTTP request    // This is for security to prevent anyone from copy paste the page URL directly in the browser address bar (i.e. the HTTP Request is GET method, not POST method), and to make sure the user is coming through a POST HTTP request
     // echo 'You Are Not Authorized to View This Page (from dashboard.php)<br>';
     header('Location: index.php');
